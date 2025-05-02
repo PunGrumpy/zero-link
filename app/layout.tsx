@@ -1,4 +1,3 @@
-import { Header } from '@/components/header'
 import './globals.css'
 
 import { createMetadata } from '@/lib/metadata'
@@ -44,7 +43,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
           {children}
         </ThemeProvider>
       </body>

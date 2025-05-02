@@ -1,19 +1,18 @@
 'use client'
 
-import { useIsScroll } from '@/hooks/use-scroll'
-import { navigation } from '@/lib/navigation'
-import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger
-} from '../ui/navigation-menu'
-import Logo from './logo.svg'
+} from '@/components/ui/navigation-menu'
+import { useIsScroll } from '@/hooks/use-scroll'
+import { navigation } from '@/lib/navigation'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const Header = () => {
   const isScrolled = useIsScroll()
@@ -31,7 +30,7 @@ export const Header = () => {
             <div className="relative h-6 w-6 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
                 <Image
-                  src={Logo}
+                  src="/logo.svg"
                   alt="Zeus Logo"
                   width={24}
                   height={24}
