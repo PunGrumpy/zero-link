@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "ultracite lint",
+    "format": "ultracite format"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -14,11 +15,13 @@
     "next": "15.3.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@biomejs/biome": "^1.9.4",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "ultracite": "^4.2.1"
   }
 }
