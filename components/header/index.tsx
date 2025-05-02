@@ -1,0 +1,76 @@
+'use client'
+
+import { useIsScroll } from '@/hooks/use-scroll'
+import { navigation } from '@/lib/navigation'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '../ui/button'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger
+} from '../ui/navigation-menu'
+import Logo from './logo.svg'
+
+export const Header = () => {
+  const isScrolled = useIsScroll()
+
+  return (
+    <header
+      className={cn(
+        'fixed top-0 z-50 w-full bg-background backdrop-blur-md transition-all duration-300',
+        isScrolled && 'border-border border-b'
+      )}
+    >
+      <div className="container mx-auto flex h-16 items-center justify-between px-6">
+        <div className="flex items-center space-x-6">
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="relative h-6 w-6 overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src={Logo}
+                  alt="Zeus Logo"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 invert dark:invert-0"
+                />
+              </div>
+            </div>
+            <span className="font-bold text-xl">Zeus</span>
+          </Link>
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList>
+              {navigation.map(item => (
+                <NavigationMenuItem
+                  key={item.label}
+                  className="hidden md:block"
+                >
+                  {item.href ? (
+                    <NavigationMenuLink asChild>
+                      <Button variant="ghost" asChild>
+                        <Link href={item.href}>{item.label}</Link>
+                      </Button>
+                    </NavigationMenuLink>
+                  ) : (
+                    <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+        <div className="hidden items-center justify-end gap-3 md:flex">
+          <Button size="sm" variant="outline" asChild>
+            <Link href="/login">Login</Link>
+          </Button>
+          <Button size="sm" asChild>
+            <Link href="/signup">Sign Up</Link>
+          </Button>
+        </div>
+      </div>
+    </header>
+  )
+}
