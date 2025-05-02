@@ -5,17 +5,10 @@ export const navigation = [
 
 export const footerNavigation = [
   {
-    label: 'Products',
-    items: [
-      { href: '/products/url-shortener', label: 'URL Shortener' },
-      { href: '/products/link-in-bio', label: 'Link in Bio' }
-    ]
-  },
-  {
     label: 'Resources',
     items: [
-      { href: '/resources/blog', label: 'Blog' },
-      { href: '/resources/docs', label: 'Docs' }
+      { href: '/blog', label: 'Blog' },
+      { href: '/docs', label: 'Docs' }
     ]
   },
   {
@@ -30,6 +23,14 @@ export const footerNavigation = [
     items: [
       { href: '/terms', label: 'Terms' },
       { href: '/privacy', label: 'Privacy' }
+    ]
+  },
+  {
+    label: 'Social',
+    items: [
+      { href: '/twitter', label: 'Twitter' },
+      { href: '/instagram', label: 'Instagram' },
+      { href: '/facebook', label: 'Facebook' }
     ]
   }
 ]
