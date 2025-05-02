@@ -11,7 +11,9 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: z.string().min(1),
     DISCORD_CLIENT_SECRET: z.string().min(1),
     GITHUB_CLIENT_ID: z.string().min(1),
-    GITHUB_CLIENT_SECRET: z.string().min(1)
+    GITHUB_CLIENT_SECRET: z.string().min(1),
+    BETTERSTACK_API_KEY: z.string().min(1),
+    BETTERSTACK_URL: z.string().min(1).url()
   },
   client: {},
   runtimeEnv: {
@@ -21,6 +23,8 @@ export const env = createEnv({
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
-    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET
+    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    BETTERSTACK_API_KEY: process.env.BETTERSTACK_API_KEY,
+    BETTERSTACK_URL: process.env.BETTERSTACK_URL
   }
 })
