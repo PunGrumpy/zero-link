@@ -25,16 +25,16 @@ export const Header = () => {
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-12">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="relative h-6 w-6 overflow-hidden">
+            <div className="relative h-8 w-8 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
                 <Image
                   src="/logo.svg"
                   alt="Zeus Logo"
-                  width={24}
-                  height={24}
-                  className="h-6 w-6 invert dark:invert-0"
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 invert dark:invert-0"
                 />
               </div>
             </div>
@@ -63,10 +63,10 @@ export const Header = () => {
         </div>
         <div className="hidden items-center justify-end gap-3 md:flex">
           <Button size="sm" variant="outline" asChild>
-            <Link href="/login">Login</Link>
+            <Link href="/contact">Contact Us</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link href="/signup">Sign Up</Link>
+            <Link href="/login">Login</Link>
           </Button>
         </div>
       </div>

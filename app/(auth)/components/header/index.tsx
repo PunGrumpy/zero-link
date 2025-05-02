@@ -5,10 +5,8 @@ import { useIsScroll } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 export const Header = () => {
-  const pathname = usePathname()
   const isScroll = useIsScroll()
 
   return (
@@ -39,19 +37,8 @@ export const Header = () => {
       </Link>
       <nav className="flex flex-1 flex-row items-center justify-end">
         <div className="flex flex-initial flex-row items-center justify-end gap-2">
-          <Button
-            size="sm"
-            asChild
-            className="bg-transparent text-muted-foreground duration-300 hover:bg-transparent hover:text-foreground"
-          >
-            <Link href="/contact">Contact</Link>
-          </Button>
           <Button variant="outline" size="sm" asChild>
-            {pathname.includes('login') ? (
-              <Link href="/signup">Sign Up</Link>
-            ) : (
-              <Link href="/login">Log In</Link>
-            )}
+            <Link href="/contact">Contact</Link>
           </Button>
         </div>
       </nav>
