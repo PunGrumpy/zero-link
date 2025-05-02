@@ -1,5 +1,12 @@
 import { Status } from '@/components/status'
 import { ThemeSwitcher } from '@/components/theme-switcher'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -28,16 +35,62 @@ export const Footer = () => {
           <ul className="m-0 grid w-full list-none grid-cols-2 items-start gap-4 p-0 md:flex md:items-center">
             <Link
               href="/"
-              className="text-muted-foreground duration-300 hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground"
             >
               Home
             </Link>
             <Link
               href="/docs"
-              className="text-muted-foreground duration-300 hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground"
             >
               Docs
             </Link>
+            <Link
+              href="/guides"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Guides
+            </Link>
+            <Link
+              href="/blog"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Blog
+            </Link>
+            <Link
+              href="/contact"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Contact
+            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="w-fit">
+                <Link
+                  href="/legal"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Legal <ChevronDown className="inline h-4 w-4" />
+                </Link>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  <Link
+                    href="/legal/terms"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    Terms of Service
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link
+                    href="/legal/privacy"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    Privacy Policy
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </ul>
         </div>
 
