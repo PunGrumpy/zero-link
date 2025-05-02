@@ -7,14 +7,20 @@
     "build": "next build",
     "start": "next start",
     "lint": "ultracite lint",
-    "format": "ultracite format"
+    "format": "ultracite format",
+    "db:generate": "bunx --bun @better-auth/cli generate --output ./db/schema.ts --config ./lib/auth.ts && drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.0",
     "@radix-ui/react-navigation-menu": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.0",
     "@t3-oss/env-nextjs": "^0.13.4",
+    "better-auth": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.43.1",
     "lucide-react": "^0.506.0",
     "next": "15.3.1",
     "next-themes": "^0.4.6",
@@ -29,7 +35,9 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.0",
     "tailwindcss": "^4",
+    "tsx": "^4.19.4",
     "tw-animate-css": "^1.2.8",
     "typescript": "^5",
     "ultracite": "^4.2.1"
