@@ -25,7 +25,7 @@ export const Header = () => {
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <div className="flex items-center space-x-12">
+        <div className="flex items-center space-x-8">
           <Link href="/" className="flex items-center space-x-2">
             <div className="relative h-8 w-8 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
@@ -45,11 +45,16 @@ export const Header = () => {
               {navigation.map(item => (
                 <NavigationMenuItem
                   key={item.label}
-                  className="hidden md:block"
+                  className="hidden text-muted-foreground md:block"
                 >
                   {item.href ? (
                     <NavigationMenuLink asChild>
-                      <Button variant="ghost" asChild>
+                      <Button
+                        asChild
+                        size="sm"
+                        variant="ghost"
+                        className="rounded-full"
+                      >
                         <Link href={item.href}>{item.label}</Link>
                       </Button>
                     </NavigationMenuLink>
