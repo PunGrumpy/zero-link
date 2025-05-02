@@ -33,13 +33,13 @@ export const Footer = () => {
 
           <div className="col-span-full row-span-full flex justify-start md:col-span-1 md:row-span-1 md:justify-end">
             <Link href="/" className="block">
-              <div className="relative h-7 w-7 overflow-hidden">
+              <div className="relative h-5 w-5 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src="/logo.svg"
                     alt="Zeus Logo"
-                    width={28}
-                    height={28}
+                    width={20}
+                    height={20}
                     className="invert dark:invert-0"
                   />
                 </div>

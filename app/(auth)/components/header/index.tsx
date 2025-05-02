@@ -30,7 +30,7 @@ export const Header = () => {
               alt="Zeus Logo"
               width={32}
               height={32}
-              className="h-8 w-8 invert dark:invert-0"
+              className="invert dark:invert-0"
             />
           </div>
         </div>
