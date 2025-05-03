@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "ultracite lint",
     "format": "ultracite format",
-    "db:generate": "bunx --bun @better-auth/cli generate --output ./db/schema.ts --config ./lib/auth.ts && drizzle-kit generate",
+    "auth:generate": "bunx --bun @better-auth/cli generate --output ./db/schema.ts --config ./lib/auth.ts",
+    "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
   },
