@@ -1,8 +1,13 @@
 'use client'
 
-import { ThemeSwitcher } from '@/components/theme-switcher'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
+import type { auth } from '@/lib/auth'
+import { authClient } from '@/lib/auth-client'
+import { LogOutIcon } from 'lucide-react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import type { ReactNode } from 'react'
+import { ThemeSwitcher } from '../theme-switcher'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,41 +16,29 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { LogOutIcon } from 'lucide-react'
-import Link from 'next/link'
-import { useAuth } from './use-auth'
+} from '../ui/dropdown-menu'
 
-export const AuthButton = () => {
-  const { session, handleSignOut } = useAuth()
+type AuthButtonProps = {
+  children?: ReactNode
+  session: typeof auth.$Infer.Session
+}
 
-  if (!session) {
-    return (
-      <>
-        <Button asChild size="sm" variant="outline" className="w-full md:w-fit">
-          <Link href="/contact">Contact Us</Link>
-        </Button>
-        <Button asChild size="sm" className="w-full md:w-fit">
-          <Link href="/login">Login</Link>
-        </Button>
-      </>
-    )
-  }
+export const AuthButton = ({ children, session }: AuthButtonProps) => {
+  const { signOut } = authClient
+  const router = useRouter()
 
   return (
-    <>
-      <Button asChild size="sm" variant="outline">
-        <Link href="/dashboard">Dashboard</Link>
-      </Button>
+    <div className="hidden items-center justify-end gap-3 md:flex">
+      {children}
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Avatar className="h-8 w-8 cursor-pointer">
             <AvatarImage
-              src={session.user.image || ''}
-              alt={session.user.name || 'User Avatar'}
+              src={session?.user.image || ''}
+              alt={session?.user.name || 'User Avatar'}
             />
             <AvatarFallback>
-              {session.user.name?.charAt(0).toUpperCase()}
+              {session?.user.name?.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
@@ -56,12 +49,14 @@ export const AuthButton = () => {
           <DropdownMenuLabel className="flex flex-col gap-1 px-2 py-2">
             {session?.user?.name || 'User Name'}
             <p className="text-muted-foreground">
-              {session?.user?.email || 'example@blackhead.com'}
+              {session?.user?.email || 'example@zeus.com'}
             </p>
           </DropdownMenuLabel>
 
           <DropdownMenuItem asChild className="py-2.5 text-muted-foreground">
-            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/dashboard" className="cursor-pointer">
+              Dashboard
+            </Link>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild className="py-2.5 text-muted-foreground">
@@ -81,7 +76,15 @@ export const AuthButton = () => {
 
           <DropdownMenuItem
             className="group my-1.5 cursor-pointer py-2.5 text-muted-foreground"
-            onClick={handleSignOut}
+            onClick={() =>
+              signOut({
+                fetchOptions: {
+                  onSuccess: () => {
+                    router.push('/')
+                  }
+                }
+              })
+            }
           >
             Logout
             <DropdownMenuShortcut>
@@ -90,6 +93,6 @@ export const AuthButton = () => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </>
+    </div>
   )
 }

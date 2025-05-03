@@ -37,7 +37,7 @@ export const Header = () => {
       </Link>
       <nav className="flex flex-1 flex-row items-center justify-end">
         <div className="flex flex-initial flex-row items-center justify-end gap-2">
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" asChild>
             <Link href="/contact">Contact Us</Link>
           </Button>
         </div>

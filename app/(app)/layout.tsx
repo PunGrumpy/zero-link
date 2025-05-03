@@ -1,25 +1,28 @@
-import { Header } from '@/app/(home)/components/header'
 import { MobileMenu } from '@/components/auth/mobile-menu'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 import type { ReactNode } from 'react'
-import { Footer } from './components/footer'
+import { Header } from './components/header'
 
-type HomeLayoutProps = {
+type AppLayoutProps = {
   children: ReactNode
 }
 
-export default async function HomeLayout({ children }: HomeLayoutProps) {
+export default async function AppLayout({ children }: AppLayoutProps) {
   const session = await auth.api.getSession({
     headers: await headers()
   })
+
+  if (!session) {
+    redirect('/login')
+  }
 
   return (
     <>
       <Header session={session} />
       <MobileMenu session={session} />
-      {children}
-      <Footer />
+      <main className="flex-1">{children}</main>
     </>
   )
 }

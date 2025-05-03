@@ -10,9 +10,8 @@ type AuthLayoutProps = {
 }
 
 export default async function AuthLayout({ children }: AuthLayoutProps) {
-  const headersList = await headers()
   const session = await auth.api.getSession({
-    headers: headersList
+    headers: await headers()
   })
 
   if (session) {

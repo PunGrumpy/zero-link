@@ -1,32 +1,29 @@
-import { ThemeSwitcher } from '@/components/theme-switcher'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
+'use client'
+
+import type { auth } from '@/lib/auth'
+import { authClient } from '@/lib/auth-client'
 import { Layout, Settings } from 'lucide-react'
 import Link from 'next/link'
-import { useAuth } from './use-auth'
+import { useRouter } from 'next/navigation'
+import type { ReactNode } from 'react'
+import { ThemeSwitcher } from '../theme-switcher'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
-export const MobileAuthButton = () => {
-  const { session, handleSignOut } = useAuth()
+type MobileAuthButtonProps = {
+  children: ReactNode
+  session: typeof auth.$Infer.Session
+}
 
-  if (!session) {
-    return (
-      <>
-        <Button asChild size="lg" variant="outline" className="w-full md:w-fit">
-          <Link href="/contact">Contact Us</Link>
-        </Button>
-        <Button asChild size="lg" className="w-full md:w-fit">
-          <Link href="/login">Login</Link>
-        </Button>
-      </>
-    )
-  }
+export const MobileAuthButton = ({
+  children,
+  session
+}: MobileAuthButtonProps) => {
+  const { signOut } = authClient
+  const router = useRouter()
 
   return (
     <>
-      <Button variant="outline" size="lg" className="w-full" asChild>
-        <Link href="/contact">Contact Us</Link>
-      </Button>
-
+      {children}
       <div className="space-y-1">
         <div className="border-b py-1 pb-4">
           <div className="flex items-center justify-between p-3">
@@ -58,7 +55,18 @@ export const MobileAuthButton = () => {
           </div>
 
           <div className="flex items-center justify-between p-3 text-muted-foreground">
-            <button type="button" onClick={handleSignOut}>
+            <button
+              type="button"
+              onClick={() =>
+                signOut({
+                  fetchOptions: {
+                    onSuccess: () => {
+                      router.push('/')
+                    }
+                  }
+                })
+              }
+            >
               Logout
             </button>
           </div>

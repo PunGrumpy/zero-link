@@ -1,12 +1,14 @@
 'use client'
 
+import { MobileAuthButton } from '@/components/auth/mobile-auth-button'
 import { ThemeSwitcher } from '@/components/theme-switcher'
+import { Button } from '@/components/ui/button'
+import type { auth } from '@/lib/auth'
 import { navigation } from '@/lib/navigation'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { create } from 'zustand'
-import { MobileAuthButton } from './mobile-auth-button'
 
 export const mobileMenuOpen = create<{
   isOpen: boolean
@@ -16,7 +18,11 @@ export const mobileMenuOpen = create<{
   toggle: () => set(state => ({ isOpen: !state.isOpen }))
 }))
 
-export const MobileMenu = () => {
+type MobileMenuProps = {
+  session: typeof auth.$Infer.Session | null
+}
+
+export const MobileMenu = ({ session }: MobileMenuProps) => {
   const pathname = usePathname()
   const { isOpen, toggle } = mobileMenuOpen()
 
@@ -29,7 +35,27 @@ export const MobileMenu = () => {
       )}
     >
       <div className="flex w-full flex-col space-y-4">
-        <MobileAuthButton />
+        {session ? (
+          <MobileAuthButton session={session}>
+            <Button variant="outline" size="lg" className="w-full" asChild>
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </MobileAuthButton>
+        ) : (
+          <>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="w-full md:w-fit"
+            >
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+            <Button asChild size="lg" className="w-full md:w-fit">
+              <Link href="/login">Login</Link>
+            </Button>
+          </>
+        )}
       </div>
 
       <div className="space-y-2.5 border-b py-2 pb-4">
