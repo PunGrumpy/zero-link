@@ -1,4 +1,12 @@
-import { boolean, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+import {
+  boolean,
+  index,
+  integer,
+  pgTable,
+  primaryKey,
+  text,
+  timestamp
+} from 'drizzle-orm/pg-core'
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
@@ -7,7 +15,12 @@ export const user = pgTable('user', {
   emailVerified: boolean('email_verified').notNull(),
   image: text('image'),
   createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull()
+  updatedAt: timestamp('updated_at').notNull(),
+  role: text('role'),
+  banned: boolean('banned'),
+  banReason: text('ban_reason'),
+  banExpires: timestamp('ban_expires'),
+  twoFactorEnabled: boolean('two_factor_enabled')
 })
 
 export const session = pgTable('session', {
@@ -20,7 +33,8 @@ export const session = pgTable('session', {
   userAgent: text('user_agent'),
   userId: text('user_id')
     .notNull()
-    .references(() => user.id, { onDelete: 'cascade' })
+    .references(() => user.id, { onDelete: 'cascade' }),
+  impersonatedBy: text('impersonated_by')
 })
 
 export const account = pgTable('account', {
@@ -49,3 +63,63 @@ export const verification = pgTable('verification', {
   createdAt: timestamp('created_at'),
   updatedAt: timestamp('updated_at')
 })
+
+export const twoFactor = pgTable('two_factor', {
+  id: text('id').primaryKey(),
+  secret: text('secret').notNull(),
+  backupCodes: text('backup_codes').notNull(),
+  userId: text('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' })
+})
+
+export const link = pgTable(
+  'link',
+  {
+    id: text('id')
+      .primaryKey()
+      .$defaultFn(() => 'cuid()'),
+    url: text('url').notNull(),
+    slug: text('slug').notNull().unique(),
+    description: text('description'),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    createdBy: text('created_by')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    clicks: integer('clicks').notNull().default(0),
+    lastClicked: timestamp('last_clicked')
+  },
+  table => [
+    index('link_slug_idx').on(table.slug),
+    index('link_creator_idx').on(table.createdBy)
+  ]
+)
+
+export const tag = pgTable(
+  'tag',
+  {
+    id: text('id')
+      .primaryKey()
+      .$defaultFn(() => 'cuid()'),
+    name: text('name').notNull(),
+    color: text('color'),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    createdBy: text('created_by')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' })
+  },
+  table => [index('tag_creator_idx').on(table.createdBy)]
+)
+
+export const linkTag = pgTable(
+  'link_tag',
+  {
+    linkId: text('link_id')
+      .notNull()
+      .references(() => link.id, { onDelete: 'cascade' }),
+    tagId: text('tag_id')
+      .notNull()
+      .references(() => tag.id, { onDelete: 'cascade' })
+  },
+  table => [primaryKey({ columns: [table.linkId, table.tagId] })]
+)

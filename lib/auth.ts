@@ -3,9 +3,11 @@ import * as schema from '@/db/schema'
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { nextCookies } from 'better-auth/next-js'
+import { admin, twoFactor } from 'better-auth/plugins'
 import { env } from './env'
 
 export const auth = betterAuth({
+  appName: 'Zeus',
   database: drizzleAdapter(db, {
     provider: 'pg',
     schema: schema
@@ -20,5 +22,5 @@ export const auth = betterAuth({
       clientSecret: env.GITHUB_CLIENT_SECRET
     }
   },
-  plugins: [nextCookies()]
+  plugins: [admin(), twoFactor(), nextCookies()]
 })
