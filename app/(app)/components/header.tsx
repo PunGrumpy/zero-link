@@ -4,7 +4,6 @@ import { AuthButton } from '@/components/auth/auth-button'
 import { MobileMenuTrigger } from '@/components/auth/mobile-menu-trigger'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { useIsScroll } from '@/hooks/use-scroll'
 import type { auth } from '@/lib/auth'
 import { cn } from '@/lib/utils'
 import { Bell } from 'lucide-react'
@@ -16,8 +15,6 @@ type HeaderProps = {
 }
 
 export const Header = ({ session }: HeaderProps) => {
-  const isScroll = useIsScroll()
-
   return (
     <header
       className={cn(
@@ -29,14 +26,12 @@ export const Header = ({ session }: HeaderProps) => {
         href="/"
         className={cn(
           'flex items-center space-x-2',
-          '[&:has(~nav>ul>li)]:hidden md:[&:has(~nav>ul>li)]:inline',
-          isScroll && 'fixed top-4 z-10'
+          '[&:has(~nav>ul>li)]:hidden md:[&:has(~nav>ul>li)]:inline'
         )}
       >
         <div
           className={cn(
-            'relative overflow-hidden transition-all duration-300 ease-in-out',
-            isScroll ? 'h-4 w-4' : 'h-6 w-6'
+            'relative h-6 w-6 overflow-hidden transition-all duration-300 ease-in-out'
           )}
         >
           <div className="absolute inset-0 flex items-center justify-center">
@@ -50,12 +45,7 @@ export const Header = ({ session }: HeaderProps) => {
           </div>
         </div>
       </Link>
-      <nav
-        className={cn(
-          'flex flex-1 flex-row items-center justify-between gap-6 sm:pl-4',
-          isScroll && 'sm:pl-10'
-        )}
-      >
+      <nav className="flex flex-1 flex-row items-center justify-between gap-6 sm:pl-4">
         <ul className="flex flex-initial flex-row items-center">
           <li className="flex flex-initial flex-row items-center gap-0.5 sm:gap-2">
             <svg
