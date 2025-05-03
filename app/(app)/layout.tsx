@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import type { ReactNode } from 'react'
 import { Header } from './components/header'
+import { Navigation } from './components/navigation'
 
 type AppLayoutProps = {
   children: ReactNode
@@ -22,7 +23,10 @@ export default async function AppLayout({ children }: AppLayoutProps) {
     <>
       <Header session={session} />
       <MobileMenu session={session} />
-      <main className="flex-1">{children}</main>
+      <main className="min-h-[calc(100vh-64px)] [&:has([data-not-found])]:bg-background">
+        <Navigation />
+        {children}
+      </main>
     </>
   )
 }
