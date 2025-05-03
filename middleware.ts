@@ -2,7 +2,7 @@ import type { auth } from '@/lib/auth'
 import { betterFetch } from '@better-fetch/fetch'
 import { type NextRequest, NextResponse } from 'next/server'
 
-export type Session = typeof auth.$Infer.Session
+type Session = typeof auth.$Infer.Session
 
 export async function middleware(request: NextRequest) {
   const { data: session } = await betterFetch<Session>(
