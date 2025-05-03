@@ -34,7 +34,7 @@ export const AuthButton = () => {
 
   return (
     <>
-      <Button variant="outline" asChild>
+      <Button asChild size="sm" variant="outline">
         <Link href="/dashboard">Dashboard</Link>
       </Button>
       <DropdownMenu modal={false}>
