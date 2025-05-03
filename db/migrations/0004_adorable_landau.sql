@@ -1,0 +1,1 @@
+ALTER TABLE "user" RENAME COLUMN "limit" TO "limit_links";

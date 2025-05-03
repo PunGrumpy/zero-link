@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD COLUMN "limit" integer DEFAULT 10 NOT NULL;
