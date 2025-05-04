@@ -1,3 +1,4 @@
+import { createId } from '@paralleldrive/cuid2'
 import {
   boolean,
   index,
@@ -79,7 +80,7 @@ export const link = pgTable(
   {
     id: text('id')
       .primaryKey()
-      .$defaultFn(() => 'cuid()'),
+      .$defaultFn(() => createId()),
     url: text('url').notNull(),
     slug: text('slug').notNull().unique(),
     description: text('description'),
@@ -101,7 +102,7 @@ export const tag = pgTable(
   {
     id: text('id')
       .primaryKey()
-      .$defaultFn(() => 'cuid()'),
+      .$defaultFn(() => createId()),
     name: text('name').notNull(),
     color: text('color'),
     createdAt: timestamp('created_at').notNull().defaultNow(),
