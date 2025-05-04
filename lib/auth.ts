@@ -12,6 +12,15 @@ export const auth = betterAuth({
     provider: 'pg',
     schema: schema
   }),
+  user: {
+    additionalFields: {
+      limitLinks: {
+        type: 'number',
+        defaultValue: 10,
+        required: true
+      }
+    }
+  },
   socialProviders: {
     discord: {
       clientId: env.DISCORD_CLIENT_ID,

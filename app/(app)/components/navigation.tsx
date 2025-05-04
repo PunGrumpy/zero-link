@@ -29,7 +29,7 @@ export const Navigation = () => {
         'bg-background shadow-[inset_0_-1px] shadow-muted'
       )}
     >
-      <div className="relative flex transform-none items-center px-2 md:px-4 [&>*]:shrink-0">
+      <div className="relative flex transform-none items-center px-2 md:px-6 [&>*]:shrink-0">
         {navigation.map(item => {
           const isActive = pathname === item.href
 
@@ -56,7 +56,7 @@ export const Navigation = () => {
           )
         })}
         <div
-          className="absolute bottom-0 h-0.5 bg-foreground transition-all duration-300 ease-in-out"
+          className="absolute bottom-0 left-0 h-0.5 bg-foreground transition-all duration-300 ease-in-out"
           style={{
             left: `${activePosition.left}px`,
             width: `${activePosition.width}px`
