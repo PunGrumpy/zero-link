@@ -75,12 +75,10 @@ export const formSchema = z.object({
   selectedTags: z.array(z.string())
 })
 
-type FormValues = z.infer<typeof formSchema>
-
 export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
   const [open, setOpen] = useState(false)
 
-  const form = useForm<FormValues>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       url: '',
@@ -90,7 +88,7 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
     }
   })
 
-  const onSubmit = async (value: FormValues) => {
+  const onSubmit = async (value: z.infer<typeof formSchema>) => {
     const slugExists = await isSlugExists(value.slug)
 
     if (slugExists) {
