@@ -67,8 +67,8 @@ export const AuthButton = ({ children, session }: AuthButtonProps) => {
 
           <DropdownMenuSeparator />
 
-          <DropdownMenuLabel className="flex items-center justify-between text-muted-foreground">
-            Theme
+          <DropdownMenuLabel className="flex items-center justify-between font-normal">
+            <p className="text-muted-foreground">Theme</p>
             <ThemeSwitcher />
           </DropdownMenuLabel>
 

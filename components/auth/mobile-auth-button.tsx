@@ -49,8 +49,8 @@ export const MobileAuthButton = ({
             <Settings className="h-4 w-4" />
           </div>
 
-          <div className="flex items-center justify-between px-3 py-2 text-muted-foreground">
-            Theme
+          <div className="flex items-center justify-between px-3 py-2">
+            <p className="text-muted-foreground">Theme</p>
             <ThemeSwitcher />
           </div>
 
