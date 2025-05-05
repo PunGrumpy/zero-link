@@ -33,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background antialiased',
+          'relative min-h-vh bg-background antialiased',
           geistSans.variable,
           geistMono.variable
         )}
