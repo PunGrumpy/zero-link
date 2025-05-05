@@ -11,7 +11,7 @@ export const MobileMenuTrigger = () => {
     <Button
       variant="outline"
       size="icon"
-      className="size-8 shrink-0 rounded-full lg:hidden"
+      className="h-8 w-8 shrink-0 rounded-full lg:hidden"
       onClick={toggle}
       aria-label="Open main menu"
       data-expanded={isOpen}
