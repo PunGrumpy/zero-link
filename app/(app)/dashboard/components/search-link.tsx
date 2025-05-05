@@ -26,7 +26,7 @@ export const SearchLink = () => {
       <Input
         type="search"
         autoComplete="off"
-        placeholder={`Search ${searchParams.get('search')?.toString() || 'everthing to see'}`}
+        placeholder="Search everthing to see"
         className="pl-8"
         onChange={e => handleSearch(e.target.value)}
         defaultValue={searchParams.get('search')?.toString()}
