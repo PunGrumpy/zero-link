@@ -26,7 +26,7 @@ export const Navigation = () => {
       className={cn(
         'flex-initial flex-row items-center justify-start',
         'scrollbar-none -mt-2.5 sticky top-0 overflow-x-auto',
-        'bg-background shadow-[inset_0_-1px] shadow-muted'
+        'z-[calc(50_-_1)] bg-background shadow-[inset_0_-1px] shadow-muted'
       )}
     >
       <div className="relative flex transform-none items-center px-4 md:px-6 [&>*]:shrink-0">
@@ -43,7 +43,7 @@ export const Navigation = () => {
               }}
               href={item.href}
               className={cn(
-                'relative inline-block select-none px-2 py-3 no-underline outline-offset-[-6px]! transition-colors duration-200 ease-[easing-function:ease]',
+                'relative inline-block select-none px-3 py-4 no-underline outline-offset-[-6px]! transition-colors duration-200 ease-[easing-function:ease]',
                 'group outline-none',
                 isActive
                   ? 'text-foreground'
