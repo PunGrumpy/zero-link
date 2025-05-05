@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { type LinkWithTag, getLinkandTagByUser } from './actions/link'
+import { CardLink } from './components/card-link'
 import { CreateLink } from './components/create-link'
 import { LinkLimit } from './components/link-limit'
 import { SearchLink } from './components/search-link'
@@ -49,8 +50,8 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
   return (
     <div className="container relative grid auto-rows-fr md:mx-auto">
       <section className="grid-cols-1 grid-rows-2">
-        <section className="px-2 py-6 md:px-6">
-          <div className="flex flex-initial flex-col items-stretch">
+        <section className="px-4 py-6 md:px-6">
+          <div className="flex flex-initial flex-col items-stretch gap-4 sm:gap-6">
             <div className="flex flex-initial flex-row items-center gap-3">
               <SearchLink />
               <LinkLimit userLink={links.length} maxLink={limit} />
@@ -62,6 +63,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
                 </Button>
               </CreateLink>
             </div>
+            <CardLink filteredLink={filteredLinks} />
           </div>
         </section>
       </section>

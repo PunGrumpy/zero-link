@@ -29,7 +29,7 @@ export const Navigation = () => {
         'bg-background shadow-[inset_0_-1px] shadow-muted'
       )}
     >
-      <div className="relative flex transform-none items-center px-2 md:px-6 [&>*]:shrink-0">
+      <div className="relative flex transform-none items-center px-4 md:px-6 [&>*]:shrink-0">
         {navigation.map(item => {
           const isActive = pathname === item.href
 
