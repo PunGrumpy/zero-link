@@ -58,8 +58,8 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
               <SortLink />
               <CreateLink tags={tags}>
                 <Button>
-                  <Plus className="h-4 w-4" />
-                  <span className="hidden md:flex">Create new link</span>
+                  <Plus className="flex h-4 w-4 md:hidden" />
+                  <p className="hidden capitalize md:flex">Add new link</p>
                 </Button>
               </CreateLink>
             </div>
