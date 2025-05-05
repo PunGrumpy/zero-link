@@ -10,3 +10,21 @@ export const generateRandomString = (length: number) => {
     .toString(36)
     .substring(2, 2 + length)
 }
+
+export const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  })
+}
+
+export const getTagBackgroundColor = (
+  tagColor: string | null,
+  isSelected: boolean
+) => {
+  if (!tagColor) {
+    return ''
+  }
+  return isSelected ? tagColor : `${tagColor}1D`
+}

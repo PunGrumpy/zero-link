@@ -20,7 +20,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import type { tag } from '@/db/schema'
-import { generateRandomString } from '@/lib/utils'
+import { generateRandomString, getTagBackgroundColor } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   AlertCircle,
@@ -89,16 +89,6 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
       selectedTags: []
     }
   })
-
-  const getTagBackgroundColor = (
-    tagColor: string | null,
-    isSelected: boolean
-  ) => {
-    if (!tagColor) {
-      return ''
-    }
-    return isSelected ? tagColor : `${tagColor}1D`
-  }
 
   const onSubmit = async (value: FormValues) => {
     const slugExists = await isSlugExists(value.slug)
