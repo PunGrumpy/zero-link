@@ -2,7 +2,12 @@
 
 import { Button } from '@/components/ui/button'
 import { authClient } from '@/lib/auth-client'
-import { DiscordLogo, GithubLogo } from '@phosphor-icons/react'
+import {
+  SiDiscord,
+  SiDiscordHex,
+  SiGithub,
+  SiGithubHex
+} from '@icons-pack/react-simple-icons'
 
 export const LogIn = () => {
   return (
@@ -21,7 +26,7 @@ export const LogIn = () => {
               })
             }
           >
-            <GithubLogo className="size-6" />
+            <SiGithub color={SiGithubHex} className="h-6 w-6 dark:invert" />
             Continue with GitHub
           </Button>
 
@@ -33,7 +38,7 @@ export const LogIn = () => {
               })
             }
           >
-            <DiscordLogo className="size-6" />
+            <SiDiscord color={SiDiscordHex} className="h-6 w-6" />
             Continue with Discord
           </Button>
         </div>
