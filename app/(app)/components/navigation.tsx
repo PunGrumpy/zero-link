@@ -43,14 +43,14 @@ export const Navigation = () => {
               }}
               href={item.href}
               className={cn(
-                'relative inline-block select-none px-3 py-4 no-underline outline-offset-[-6px]! transition-colors duration-200 ease-[easing-function:ease]',
+                'relative inline-block select-none px-2 py-3 no-underline outline-offset-[-6px]! transition-colors duration-200 ease-[easing-function:ease]',
                 'group outline-none',
                 isActive
                   ? 'text-foreground'
                   : 'text-muted-foreground transition-colors hover:text-foreground'
               )}
             >
-              <div className="-z-10 absolute inset-x-0 top-2.5 h-9 rounded-sm bg-muted opacity-0 transition-opacity duration-200 contain-strict group-hover:opacity-100" />
+              <div className="-z-10 absolute inset-x-0 top-2.5 h-8 rounded-sm bg-muted opacity-0 transition-opacity duration-200 contain-strict group-hover:opacity-100" />
               {item.label}
             </Link>
           )
