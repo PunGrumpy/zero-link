@@ -16,7 +16,8 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel
+  FormLabel,
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import type { tag } from '@/db/schema'
@@ -98,6 +99,7 @@ export const CreateTag = ({ children, tags }: CreateTagProps) => {
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -116,6 +118,7 @@ export const CreateTag = ({ children, tags }: CreateTagProps) => {
                         }}
                       />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />

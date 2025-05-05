@@ -15,7 +15,8 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel
+  FormLabel,
+  FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -138,6 +139,7 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
                     <FormControl>
                       <Input {...field} placeholder="https://pungrumpy.com" />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -165,6 +167,7 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
                         </Button>
                       </div>
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -181,6 +184,7 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
                         placeholder="Write something about this link (optional)"
                       />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
