@@ -21,6 +21,7 @@ import {
 import { Input } from '@/components/ui/input'
 import type { tag } from '@/db/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { AlertCircle, CheckCircle2 } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -52,18 +53,25 @@ export const CreateTag = ({ children, tags }: CreateTagProps) => {
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
     if (tags.map(tag => tag.name).includes(value.name)) {
-      toast.error('Tag name already exists.')
+      toast.error('Tag name already exists.', {
+        icon: <AlertCircle className="size-4" />,
+        description: 'Please try a different tag name.'
+      })
       return
     }
 
     const result = await createTag(value)
 
     if (!result.success) {
-      toast.error(result.message)
+      toast.error(result.message, {
+        icon: <AlertCircle className="size-4" />,
+        description: 'Please try again.'
+      })
       return
     }
 
     toast.success(result.message, {
+      icon: <CheckCircle2 className="size-4" />,
       description: 'You can now use this tag to organize your links.'
     })
 

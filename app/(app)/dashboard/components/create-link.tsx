@@ -22,7 +22,14 @@ import { Textarea } from '@/components/ui/textarea'
 import type { tag } from '@/db/schema'
 import { generateRandomString } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Plus, Rocket, Shuffle, Tags } from 'lucide-react'
+import {
+  AlertCircle,
+  CheckCircle2,
+  Plus,
+  Rocket,
+  Shuffle,
+  Tags
+} from 'lucide-react'
 import { type ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -97,18 +104,25 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
     const slugExists = await isSlugExists(value.slug)
 
     if (slugExists) {
-      toast.error('Slug already exists.')
+      toast.error('Slug already exists.', {
+        icon: <AlertCircle className="size-4" />,
+        description: 'Please try a different slug.'
+      })
       return
     }
 
     const result = await createLink(value)
 
     if (!result.success) {
-      toast.error(result.message)
+      toast.error(result.message, {
+        icon: <AlertCircle className="size-4" />,
+        description: 'Please try again.'
+      })
       return
     }
 
     toast.success(result.message, {
+      icon: <CheckCircle2 className="size-4" />,
       description: 'You can now use this link to redirect to your desired URL.',
       duration: 10000
     })
