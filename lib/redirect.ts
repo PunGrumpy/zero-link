@@ -34,7 +34,8 @@ export const urlFromSlug = async (
   await db
     .update(link)
     .set({
-      clicks: linkData[0].clicks + 1
+      clicks: linkData[0].clicks + 1,
+      lastClicked: new Date()
     })
     .where(eq(link.id, linkData[0].id))
 
