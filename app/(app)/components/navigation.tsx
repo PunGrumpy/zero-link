@@ -25,7 +25,7 @@ export const Navigation = () => {
     <div
       className={cn(
         'flex-initial flex-row items-center justify-start',
-        'scrollbar-none sticky top-0 overflow-x-auto',
+        'scrollbar-none -mt-2.5 sticky top-0 overflow-x-auto',
         'bg-background shadow-[inset_0_-1px] shadow-muted'
       )}
     >
