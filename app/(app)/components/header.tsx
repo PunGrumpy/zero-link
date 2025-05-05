@@ -73,12 +73,10 @@ export const Header = ({ session }: HeaderProps) => {
               className="flex flex-initial flex-row items-center gap-2"
             >
               <Avatar className="h-6 w-6">
-                <AvatarImage src={session?.user?.image || ''} />
-                <AvatarFallback>
-                  {session?.user?.name?.charAt(0)}
-                </AvatarFallback>
+                <AvatarImage src={session.user.image || ''} />
+                <AvatarFallback>{session.user.name.charAt(0)}</AvatarFallback>
               </Avatar>
-              <p className="font-medium text-sm">{session?.user?.name}</p>
+              <p className="font-medium text-sm">{session.user.name}</p>
             </Link>
           </li>
         </ul>
