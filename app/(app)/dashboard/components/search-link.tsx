@@ -22,7 +22,7 @@ export const SearchLink = () => {
 
   return (
     <div className="relative w-full">
-      <Search className="-translate-y-1/2 absolute top-1/2 left-2 size-4" />
+      <Search className="-translate-y-1/2 absolute top-1/2 left-2 h-4 w-4" />
       <Input
         type="search"
         autoComplete="off"

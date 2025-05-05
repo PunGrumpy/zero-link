@@ -105,7 +105,7 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
 
     if (slugExists) {
       toast.error('Slug already exists.', {
-        icon: <AlertCircle className="size-4" />,
+        icon: <AlertCircle className="h-4 w-4" />,
         description: 'Please try a different slug.'
       })
       return
@@ -115,14 +115,14 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
 
     if (!result.success) {
       toast.error(result.message, {
-        icon: <AlertCircle className="size-4" />,
+        icon: <AlertCircle className="h-4 w-4" />,
         description: 'Please try again.'
       })
       return
     }
 
     toast.success(result.message, {
-      icon: <CheckCircle2 className="size-4" />,
+      icon: <CheckCircle2 className="h-4 w-4" />,
       description: 'You can now use this link to redirect to your desired URL.',
       duration: 10000
     })

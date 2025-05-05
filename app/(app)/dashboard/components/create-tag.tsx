@@ -54,7 +54,7 @@ export const CreateTag = ({ children, tags }: CreateTagProps) => {
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
     if (tags.map(tag => tag.name).includes(value.name)) {
       toast.error('Tag name already exists.', {
-        icon: <AlertCircle className="size-4" />,
+        icon: <AlertCircle className="h-4 w-4" />,
         description: 'Please try a different tag name.'
       })
       return
@@ -64,14 +64,14 @@ export const CreateTag = ({ children, tags }: CreateTagProps) => {
 
     if (!result.success) {
       toast.error(result.message, {
-        icon: <AlertCircle className="size-4" />,
+        icon: <AlertCircle className="h-4 w-4" />,
         description: 'Please try again.'
       })
       return
     }
 
     toast.success(result.message, {
-      icon: <CheckCircle2 className="size-4" />,
+      icon: <CheckCircle2 className="h-4 w-4" />,
       description: 'You can now use this tag to organize your links.'
     })
 

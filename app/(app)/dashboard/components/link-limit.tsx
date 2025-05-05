@@ -36,9 +36,9 @@ export const LinkLimit = ({ userLink, maxLink }: LinkLimitProps) => {
               )}
             >
               {maxLimit ? (
-                <TriangleAlert className="size-4" />
+                <TriangleAlert className="h-4 w-4" />
               ) : (
-                <Package className="size-4" />
+                <Package className="h-4 w-4" />
               )}
               <span>
                 {userLink < 10 ? `${userLink}` : userLink}
