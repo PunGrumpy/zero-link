@@ -1,0 +1,1 @@
+ALTER TABLE "user" ALTER COLUMN "limit_links" DROP DEFAULT;
