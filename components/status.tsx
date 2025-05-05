@@ -111,12 +111,12 @@ export const Status = async () => {
       rel="noreferrer"
       href={env.BETTERSTACK_URL}
     >
-      <span className="relative flex size-2">
+      <span className="relative flex h-2 w-2">
         <span
-          className={`absolute inline-flex size-full animate-ping rounded-full opacity-75 ${statusColor}`}
+          className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${statusColor}`}
         />
         <span
-          className={`relative inline-flex size-2 rounded-full ${statusColor}`}
+          className={`relative inline-flex h-2 w-2 rounded-full ${statusColor}`}
         />
       </span>
       <span className="text-muted-foreground transition-colors duration-500 hover:text-foreground">
