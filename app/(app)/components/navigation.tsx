@@ -12,9 +12,10 @@ export const Navigation = () => {
   const itemsRef = useRef<{ [key: string]: HTMLAnchorElement }>({})
 
   useEffect(() => {
-    const activeItem = Object.values(itemsRef.current).find(
-      item => item.getAttribute('href') === pathname
-    )
+    const activeItem = Object.values(itemsRef.current).find(item => {
+      const href = item.getAttribute('href')
+      return href && pathname.startsWith(href)
+    })
     if (activeItem) {
       const { left, width } = activeItem.getBoundingClientRect()
       setActivePosition({ left, width })
