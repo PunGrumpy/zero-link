@@ -16,7 +16,6 @@ export const SearchLink = () => {
     } else {
       params.delete('search')
     }
-
     router.replace(`${pathname}?${params.toString()}`)
   }
 
@@ -26,8 +25,8 @@ export const SearchLink = () => {
       <Input
         type="search"
         autoComplete="off"
-        placeholder="Search everthing to see"
-        className="pl-8"
+        placeholder="Search everything to see"
+        className="pl-8 font-normal"
         onChange={e => handleSearch(e.target.value)}
         defaultValue={searchParams.get('search')?.toString()}
       />
