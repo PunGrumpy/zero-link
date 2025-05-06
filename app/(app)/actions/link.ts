@@ -3,7 +3,7 @@
 import { db } from '@/db'
 import { link, linkTag, tag } from '@/db/schema'
 import { auth } from '@/lib/auth'
-import { eq } from 'drizzle-orm'
+import { count, eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -12,12 +12,6 @@ import type { formSchema } from '../dashboard/components/create-link'
 
 export type LinkWithTag = typeof link.$inferSelect & {
   tags: (typeof tag.$inferSelect)[]
-}
-
-type LinkWithRelations = typeof link.$inferSelect & {
-  tags: Array<{
-    tag: typeof tag.$inferSelect
-  }>
 }
 
 export const getLinkandTagByUser = async (): Promise<{
@@ -33,25 +27,38 @@ export const getLinkandTagByUser = async (): Promise<{
     redirect('/login')
   }
 
-  const results = (await db.query.link.findMany({
-    where: eq(link.createdBy, session.user.id),
-    with: {
-      tags: {
-        with: {
-          tag: true
-        }
-      }
-    }
-  })) as LinkWithRelations[]
+  const links = await db
+    .select({
+      link: link,
+      tag: tag
+    })
+    .from(link)
+    .leftJoin(linkTag, eq(link.id, linkTag.linkId))
+    .leftJoin(tag, eq(linkTag.tagId, tag.id))
+    .where(eq(link.createdBy, session.user.id))
+    .then(results => {
+      const grouped = results.reduce(
+        (acc, { link, tag }) => {
+          if (!acc[link.id]) {
+            acc[link.id] = {
+              ...link,
+              tags: []
+            }
+          }
+          if (tag) {
+            acc[link.id].tags.push(tag)
+          }
+          return acc
+        },
+        {} as Record<string, LinkWithTag>
+      )
+      return Object.values(grouped)
+    })
 
-  const links = results.map(result => ({
-    ...result,
-    tags: result.tags.map(t => t.tag)
-  }))
-
-  const tags = await db.query.tag.findMany({
-    where: eq(tag.createdBy, session.user.id)
-  })
+  const tags = await db
+    .select()
+    .from(tag)
+    .where(eq(tag.createdBy, session.user.id))
 
   return {
     links,
@@ -82,12 +89,15 @@ export const createLink = async (
     redirect('/login')
   }
 
-  const countLink = await db.query.link.findMany({
-    where: eq(link.createdBy, session.user.id)
-  })
+  const countLink = await db
+    .select({
+      count: count()
+    })
+    .from(link)
+    .where(eq(link.createdBy, session.user.id))
   const limitLink = session.user.limitLinks
 
-  if (countLink.length >= limitLink) {
+  if (countLink[0].count >= limitLink) {
     return {
       success: false,
       message: 'You have reached the limit of links.'
