@@ -23,6 +23,7 @@ export const Plan = {
 
 export const auth = betterAuth({
   appName: 'Zero Link',
+  baseURL: baseUrl,
   database: drizzleAdapter(db, {
     provider: 'pg',
     schema: schema
