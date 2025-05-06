@@ -5,22 +5,21 @@ import { urlFromSlug } from './lib/redirect'
 
 type Session = typeof auth.$Infer.Session
 
-const publicRoutes = ['/', '/login']
 const protectedRoutes = ['/dashboard', '/settings']
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const route = pathname.split('/').pop()
 
-  if (!protectedRoutes.includes(pathname)) {
-    return NextResponse.next()
-  }
-
   if (route && !protectedRoutes.includes(route)) {
     const data = await urlFromSlug(route)
     if (data.success) {
       return NextResponse.redirect(new URL(data.url, request.url))
     }
+  }
+
+  if (!protectedRoutes.includes(pathname)) {
+    return NextResponse.next()
   }
 
   const { data: session } = await betterFetch<Session>(
