@@ -1,6 +1,6 @@
 'use client'
 
-import { navigation } from '@/lib/navigation'
+import { appNavigation } from '@/lib/navigation'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -31,7 +31,7 @@ export const Navigation = () => {
       )}
     >
       <div className="relative flex transform-none items-center px-4 md:px-6 [&>*]:shrink-0">
-        {navigation.map(item => {
+        {appNavigation.map(item => {
           const isActive = pathname.startsWith(item.href)
 
           return (

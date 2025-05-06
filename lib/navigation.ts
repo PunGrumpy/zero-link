@@ -1,7 +1,4 @@
-export const navigation = [
-  { href: '/dashboard', label: 'Dashboard' },
-  { href: '/settings', label: 'Settings' }
-]
+export const navigation = [{ href: '/pricing', label: 'Pricing' }]
 
 export const footerNavigation = [
   {
@@ -33,6 +30,11 @@ export const footerNavigation = [
       { href: '/facebook', label: 'Facebook' }
     ]
   }
+]
+
+export const appNavigation = [
+  { href: '/dashboard', label: 'Dashboard' },
+  { href: '/settings', label: 'Settings' }
 ]
 
 export const settingsNavigation = [
