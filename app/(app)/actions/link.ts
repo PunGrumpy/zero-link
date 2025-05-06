@@ -149,3 +149,44 @@ export const createLink = async (
     message: 'Link created successfully.'
   }
 }
+
+export const deleteLink = async (
+  slug: string
+): Promise<{
+  success: boolean
+  message: string
+}> => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if (!session) {
+    redirect('/login')
+  }
+
+  const linkToDelete = await db.query.link.findFirst({
+    where: eq(link.slug, slug)
+  })
+
+  if (!linkToDelete) {
+    return {
+      success: false,
+      message: 'Link not found.'
+    }
+  }
+
+  if (linkToDelete.createdBy !== session.user.id) {
+    return {
+      success: false,
+      message: 'You do not have permission to delete this link.'
+    }
+  }
+
+  await db.delete(link).where(eq(link.slug, slug))
+  revalidatePath('/dashboard')
+
+  return {
+    success: true,
+    message: 'Link deleted successfully.'
+  }
+}

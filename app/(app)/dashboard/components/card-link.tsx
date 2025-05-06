@@ -8,10 +8,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { env } from '@/lib/env'
 import { cn, formatDate, getTagColor } from '@/lib/utils'
-import { Copy, QrCode } from 'lucide-react'
+import { Copy, QrCode, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import type { LinkWithTag } from '../../actions/link'
 import { CopyLink } from './copy-link'
+import { DeleteLink } from './delete-link'
 import { QRCode } from './qr-code'
 import { ShowClick } from './show-click'
 
@@ -65,6 +66,15 @@ export const CardLink = ({ filteredLink }: CardLinkProps) => {
                 </DropdownMenu>
                 <QRCode baseUrl={baseUrl} linkInfo={link} />
               </Dialog>
+              <DeleteLink slug={link.slug}>
+                <button
+                  type="button"
+                  className="text-destructive hover:text-destructive"
+                >
+                  <Trash2 className="h-4 w-4" />
+                  <span className="sr-only">Delete Link</span>
+                </button>
+              </DeleteLink>
             </div>
           </section>
 
