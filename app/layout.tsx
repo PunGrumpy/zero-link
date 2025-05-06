@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 
 const title = 'Zero Link'
 const description =
-  'Unleash the thunderbolt of efficiency with our divine URL shortener!'
+  '⚡ Unleash the thunderbolt of efficiency with our divine URL shortener!'
 
 export const metadata: Metadata = createMetadata(title, description)
 

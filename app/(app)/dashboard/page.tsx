@@ -1,6 +1,8 @@
 import { type LinkWithTag, getLinkandTagByUser } from '@/app/(app)/actions/link'
 import { Button } from '@/components/ui/button'
+import { createMetadata } from '@/lib/metadata'
 import { Plus } from 'lucide-react'
+import type { Metadata } from 'next'
 import { getTags } from '../actions/tag'
 import { CardLink } from './components/card-link'
 import { CreateLink } from './components/create-link'
@@ -35,6 +37,11 @@ type DashboardPageProps = {
     sort?: 'newest' | 'oldest' | 'most-clicks' | 'least-clicks'
   }>
 }
+
+const title = 'Dashboard - Zero Link'
+const description = 'Dashboard for managing your links'
+
+export const metadata: Metadata = createMetadata(title, description)
 
 export default async function DashboardPage({
   searchParams
