@@ -63,9 +63,9 @@ export const formSchema = z.object({
     .min(4, {
       message: 'Short link must be at least 4 characters long.'
     })
-    .regex(/^[a-zA-Z0-9_-]*$/, {
+    .regex(/^[a-z0-9_-]*$/, {
       message:
-        'Short link can only contain letters, numbers, underscores, and hyphens.'
+        'Short link can only contain lowercase letters, numbers, underscores, and hyphens.'
     })
     .regex(/^(?!.*&c$)/, {
       message: "Short link cannot end with '&c'."
