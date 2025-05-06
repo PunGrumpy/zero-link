@@ -16,10 +16,9 @@ export const getSessions = async () => {
     redirect('/login')
   }
 
-  const sessions = await db
-    .select()
-    .from(session)
-    .where(eq(session.userId, sessionData.session.userId))
+  const sessions = await db.query.session.findMany({
+    where: eq(session.userId, sessionData.session.userId)
+  })
 
   return sessions
 }

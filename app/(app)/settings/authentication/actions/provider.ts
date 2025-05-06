@@ -16,12 +16,9 @@ export const getProviders = async () => {
     redirect('/login')
   }
 
-  const providers = await db
-    .select({
-      provider_id: account.providerId
-    })
-    .from(account)
-    .where(eq(account.userId, session.user.id))
+  const providers = await db.query.account.findMany({
+    where: eq(account.userId, session.user.id)
+  })
 
   return providers
 }

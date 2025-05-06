@@ -16,21 +16,16 @@ export const getAccountByProvider = async (providerId?: string) => {
     redirect('/login')
   }
 
-  const accountData = await db
-    .select({
-      account_id: account.accountId
-    })
-    .from(account)
-    .where(
-      providerId
-        ? and(
-            eq(account.userId, session.user.id),
-            eq(account.providerId, providerId)
-          )
-        : eq(account.userId, session.user.id)
-    )
+  const accountData = await db.query.account.findFirst({
+    where: providerId
+      ? and(
+          eq(account.userId, session.user.id),
+          eq(account.providerId, providerId)
+        )
+      : eq(account.userId, session.user.id)
+  })
 
-  return accountData[0]?.account_id
+  return accountData?.accountId
 }
 
 export const getAccounts = async () => {
@@ -42,10 +37,9 @@ export const getAccounts = async () => {
     redirect('/login')
   }
 
-  const accountData = await db
-    .select()
-    .from(account)
-    .where(eq(account.userId, session.user.id))
+  const accountData = await db.query.account.findMany({
+    where: eq(account.userId, session.user.id)
+  })
 
   return accountData
 }

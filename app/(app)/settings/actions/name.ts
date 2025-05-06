@@ -21,14 +21,13 @@ export const updateName = async (
     redirect('/login')
   }
 
-  const userData = await db
-    .select()
-    .from(user)
-    .where(eq(user.id, session.user.id))
+  const userData = await db.query.user.findFirst({
+    where: eq(user.id, session.user.id)
+  })
 
   const newName = name.trim()
 
-  if (newName === userData[0].name) {
+  if (newName === userData?.name) {
     return {
       success: false,
       message: 'Name is the same as the current name'
