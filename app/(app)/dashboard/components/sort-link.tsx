@@ -7,26 +7,27 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { create } from 'zustand'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-type Sort = 'newest' | 'oldest' | 'most-clicks' | 'least-clicks'
-
-export const useSortLink = create<{
-  sort: Sort
-  setSort: (sort: Sort) => void
-}>(set => ({
-  sort: 'newest',
-  setSort: (sort: Sort) => set({ sort })
-}))
+export type Sort = 'newest' | 'oldest' | 'most-clicks' | 'least-clicks'
 
 export const SortLink = () => {
-  const { sort, setSort } = useSortLink()
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const router = useRouter()
+  const currentSort = (searchParams.get('sort') as Sort) || 'newest'
+
+  const handleSort = (value: Sort) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('sort', value)
+    router.replace(`${pathname}?${params.toString()}`)
+  }
 
   return (
     <Select
-      value={sort}
-      onValueChange={(value: Sort) => setSort(value)}
-      defaultValue={sort}
+      value={currentSort}
+      onValueChange={handleSort}
+      defaultValue={currentSort}
     >
       <SelectTrigger className="hidden sm:min-w-32 md:flex">
         <SelectValue placeholder="Sort by" />

@@ -9,12 +9,15 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import type { z } from 'zod'
 import type { formSchema } from '../dashboard/components/create-link'
+import type { Sort } from '../dashboard/components/sort-link'
 
 export type LinkWithTag = typeof link.$inferSelect & {
   tags: (typeof tag.$inferSelect)[]
 }
 
-export const getLinkandTagByUser = async (): Promise<{
+export const getLinkandTagByUser = async (
+  sort: Sort
+): Promise<{
   links: LinkWithTag[]
   tags: (typeof tag.$inferSelect)[]
   limit: number
@@ -55,13 +58,29 @@ export const getLinkandTagByUser = async (): Promise<{
       return Object.values(grouped)
     })
 
+  const sortedLinks = links.sort((a, b) => {
+    if (sort === 'newest') {
+      return b.createdAt.getTime() - a.createdAt.getTime()
+    }
+    if (sort === 'oldest') {
+      return a.createdAt.getTime() - b.createdAt.getTime()
+    }
+    if (sort === 'most-clicks') {
+      return b.clicks - a.clicks
+    }
+    if (sort === 'least-clicks') {
+      return a.clicks - b.clicks
+    }
+    return 0
+  })
+
   const tags = await db
     .select()
     .from(tag)
     .where(eq(tag.createdBy, session.user.id))
 
   return {
-    links,
+    links: sortedLinks,
     tags,
     limit: session.user.limitLinks
   }
