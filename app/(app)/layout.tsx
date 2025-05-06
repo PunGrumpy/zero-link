@@ -1,3 +1,4 @@
+import { Footer } from '@/components/footer'
 import { MobileMenu } from '@/components/menu/mobile-menu'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
@@ -23,10 +24,11 @@ export default async function AppLayout({ children }: AppLayoutProps) {
     <>
       <Header session={session} />
       <MobileMenu session={session} />
-      <main className="min-h-[calc(100vh-64px)] text-sm [&:has([data-not-found])]:bg-background">
+      <main className="min-h-[calc(100vh+64px)] text-sm [&:has([data-not-found])]:bg-background">
         <Navigation />
         {children}
       </main>
+      <Footer />
     </>
   )
 }
