@@ -48,7 +48,7 @@ export const CreateTag = ({ children, tags }: CreateTagProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      color: ''
+      color: '#e6e6e6'
     }
   })
 
