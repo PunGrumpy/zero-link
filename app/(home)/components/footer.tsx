@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <footer className="mx-4 bg-background py-8 sm:py-24">
       <nav
-        aria-label="Zeus Directory"
+        aria-label="Zero Link Directory"
         className="mx-auto flex max-w-6xl flex-col gap-4 sm:gap-16"
       >
         <div className="grid w-full grid-cols-2 gap-8 md:grid-cols-[repeat(4,_1fr)_80px] md:gap-0">
@@ -37,7 +37,7 @@ export const Footer = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src="/logo.svg"
-                    alt="Zeus Logo"
+                    alt="Zero Link Logo"
                     width={20}
                     height={20}
                     className="invert dark:invert-0"

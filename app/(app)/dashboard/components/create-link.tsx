@@ -53,7 +53,7 @@ export const formSchema = z.object({
         "Please enter a valid URL. Don't forget to include 'http://' or 'https://'."
     })
     .regex(/^(?!.*(?:http|https):\/\/(?:slug|slugr)\.vercel\.app).*$/, {
-      message: 'You cannot use the Zeus URL as a redirect destination.'
+      message: 'You cannot use the Zero Link URL as a redirect destination.'
     })
     .regex(/^\S+$/, {
       message: 'URL cannot contain spaces.' // No blank spaces

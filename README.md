@@ -1,4 +1,4 @@
-# ⚡ Zeus
+# ⚡ Zero Link
 
 Unleash the thunderbolt of efficiency with our divine URL shortener
 

@@ -14,7 +14,7 @@ export const Footer = () => {
   return (
     <footer className="border-t bg-card/40 p-6 pt-5">
       <nav
-        aria-label="Zeus Directory"
+        aria-label="Zero Link Directory"
         className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center justify-between gap-x-2 gap-y-6 md:flex md:grid-cols-none"
       >
         <div className="flex flex-col items-start gap-4 text-sm md:flex-row md:items-center">
@@ -23,7 +23,7 @@ export const Footer = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <Image
                   src="/logo.svg"
-                  alt="Zeus Logo"
+                  alt="Zero Link Logo"
                   width={24}
                   height={24}
                   className="invert dark:invert-0"
@@ -102,7 +102,7 @@ export const Footer = () => {
 
       <div className="mx-auto mt-4 max-w-6xl">
         <div className="text-muted-foreground text-xs">
-          © {new Date().getFullYear()} Zeus. All rights reserved.
+          © {new Date().getFullYear()} Zero Link. All rights reserved.
         </div>
       </div>
     </footer>

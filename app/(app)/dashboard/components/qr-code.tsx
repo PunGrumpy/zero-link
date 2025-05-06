@@ -30,7 +30,7 @@ export const QRCode = ({ baseUrl, linkInfo }: QRCodeProps) => {
     if (type === 'svg') {
       const svgBlob = new Blob([svgData], { type: 'image/svg+xml' })
       const downloadLink = document.createElement('a')
-      downloadLink.download = `${linkInfo.slug}_zeus_app.svg`
+      downloadLink.download = `${linkInfo.slug}_zero_link.svg`
       downloadLink.href = window.URL.createObjectURL(svgBlob)
       downloadLink.click()
     } else if (type === 'png') {
@@ -43,7 +43,7 @@ export const QRCode = ({ baseUrl, linkInfo }: QRCodeProps) => {
         ctx?.drawImage(img, 0, 0)
         const pngFile = canvas.toDataURL('image/png')
         const downloadLink = document.createElement('a')
-        downloadLink.download = `${linkInfo.slug}_zeus_app.png`
+        downloadLink.download = `${linkInfo.slug}_zero_link.png`
         downloadLink.href = pngFile
         downloadLink.click()
       }

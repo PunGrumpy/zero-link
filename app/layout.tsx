@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 })
 
-const title = 'Zeus'
+const title = 'Zero Link'
 const description =
   'Unleash the thunderbolt of efficiency with our divine URL shortener!'
 

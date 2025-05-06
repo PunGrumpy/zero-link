@@ -85,8 +85,8 @@ export const DeleteAccountDialog = ({
           </DialogTitle>
           <DialogDescription>
             Permanently remove your Personal Account and all of its contents
-            from the Zeus platform. This action is not reversible, so please
-            continue with caution.
+            from the Zero Link platform. This action is not reversible, so
+            please continue with caution.
           </DialogDescription>
           <Alert variant="destructive" className="border-0 bg-destructive/10">
             <AlertDescription>

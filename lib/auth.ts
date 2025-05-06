@@ -7,7 +7,7 @@ import { admin, twoFactor } from 'better-auth/plugins'
 import { env } from './env'
 
 export const auth = betterAuth({
-  appName: 'Zeus',
+  appName: 'Zero Link',
   database: drizzleAdapter(db, {
     provider: 'pg',
     schema: schema

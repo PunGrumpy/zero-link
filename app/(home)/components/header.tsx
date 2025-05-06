@@ -38,14 +38,14 @@ export const Header = ({ session }: HeaderProps) => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <Image
                   src="/logo.svg"
-                  alt="Zeus Logo"
+                  alt="Zero Link Logo"
                   width={32}
                   height={32}
                   className="invert dark:invert-0"
                 />
               </div>
             </div>
-            <span className="font-bold text-xl">Zeus</span>
+            <span className="font-bold text-xl">Zero Link</span>
           </Link>
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>

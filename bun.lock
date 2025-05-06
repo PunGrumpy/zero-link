@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "zeus",
+      "name": "zero-link",
       "dependencies": {
         "@hookform/resolvers": "^5.0.1",
         "@icons-pack/react-simple-icons": "^12.7.0",

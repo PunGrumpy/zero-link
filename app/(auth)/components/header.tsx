@@ -27,7 +27,7 @@ export const Header = () => {
           <div className="absolute inset-0 flex items-center justify-center">
             <Image
               src="/logo.svg"
-              alt="Zeus Logo"
+              alt="Zero Link Logo"
               width={32}
               height={32}
               className="invert dark:invert-0"

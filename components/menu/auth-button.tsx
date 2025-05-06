@@ -49,7 +49,7 @@ export const AuthButton = ({ children, session }: AuthButtonProps) => {
           <DropdownMenuLabel className="flex flex-col gap-1 px-2 py-2">
             {session?.user?.name || 'User Name'}
             <p className="text-muted-foreground">
-              {session?.user?.email || 'example@zeus.com'}
+              {session?.user?.email || 'zero@zerolink.dev'}
             </p>
           </DropdownMenuLabel>
 
