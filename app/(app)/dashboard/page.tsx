@@ -11,6 +11,11 @@ import { SearchLink } from './components/search-link'
 import { SearchTag } from './components/search-tag'
 import { SortLink } from './components/sort-link'
 
+const title = 'Dashboard - Zero Link'
+const description = 'Dashboard for managing your links'
+
+export const metadata: Metadata = createMetadata(title, description)
+
 const filterLinks = (
   links: LinkWithTag[],
   searchLink?: string,
@@ -37,11 +42,6 @@ type DashboardPageProps = {
     sort?: 'newest' | 'oldest' | 'most-clicks' | 'least-clicks'
   }>
 }
-
-const title = 'Dashboard - Zero Link'
-const description = 'Dashboard for managing your links'
-
-export const metadata: Metadata = createMetadata(title, description)
 
 export default async function DashboardPage({
   searchParams
