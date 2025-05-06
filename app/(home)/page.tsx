@@ -1,7 +1,13 @@
+import {} from 'lucide-react'
+import { Feature } from './components/feature'
+import { Hero } from './components/hero'
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <Hero />
+      <Feature />
+      <div className="mx-4" />
+    </>
   )
 }

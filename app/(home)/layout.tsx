@@ -18,7 +18,8 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
     <>
       <Header session={session} />
       <MobileMenu session={session} />
-      {children}
+      <div className="h-32" />
+      <main className="relative mx-auto max-w-6xl divide-y">{children}</main>
       <Footer />
     </>
   )
