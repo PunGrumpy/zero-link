@@ -19,13 +19,37 @@ export const formatDate = (date: Date) => {
   })
 }
 
-export const getTagBackgroundColor = (
+type TagColorOptions = {
+  background?: boolean
+  border?: boolean
+  backgroundOpacity?: number
+  borderOpacity?: number
+}
+
+export const getTagColor = (
   tagColor: string | null,
   isSelected: boolean,
-  opacity = 25
+  options: TagColorOptions = { background: true, border: true }
 ) => {
   if (!tagColor) {
-    return ''
+    return {
+      backgroundColor: '',
+      borderColor: ''
+    }
   }
-  return isSelected ? tagColor : `${tagColor}${opacity}`
+
+  const {
+    background = true,
+    border = true,
+    backgroundOpacity = 25,
+    borderOpacity = 50
+  } = options
+
+  const getColor = (opacity: number) =>
+    isSelected ? tagColor : `${tagColor}${opacity}`
+
+  return {
+    backgroundColor: background ? getColor(backgroundOpacity) : '',
+    borderColor: border ? getColor(borderOpacity) : ''
+  }
 }

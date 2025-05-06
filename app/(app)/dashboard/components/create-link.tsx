@@ -21,7 +21,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import type { tag } from '@/db/schema'
-import { generateRandomString, getTagBackgroundColor } from '@/lib/utils'
+import { generateRandomString, getTagColor } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   AlertCircle,
@@ -200,11 +200,10 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
                         : 'outline'
                     }
                     style={{
-                      backgroundColor: getTagBackgroundColor(
+                      ...getTagColor(
                         tag.color,
                         form.watch('selectedTags').includes(tag.id)
-                      ),
-                      borderColor: tag.color ? `${tag.color}8D` : ''
+                      )
                     }}
                     onClick={e => {
                       e.preventDefault()

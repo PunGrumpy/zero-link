@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { env } from '@/lib/env'
-import { cn, formatDate, getTagBackgroundColor } from '@/lib/utils'
+import { cn, formatDate, getTagColor } from '@/lib/utils'
 import { Copy, QrCode } from 'lucide-react'
 import Link from 'next/link'
 import type { LinkWithTag } from '../../actions/link'
@@ -89,8 +89,7 @@ export const CardLink = ({ filteredLink }: CardLinkProps) => {
                 style={{
                   borderRadius: '9999px',
                   padding: '0.5rem 0.75rem',
-                  backgroundColor: getTagBackgroundColor(tag.color, false),
-                  borderColor: tag.color ? `${tag.color}8D` : ''
+                  ...getTagColor(tag.color, false)
                 }}
               >
                 {tag.name}

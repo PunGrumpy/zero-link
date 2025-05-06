@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/popover'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import type { tag } from '@/db/schema'
-import { cn, getTagBackgroundColor } from '@/lib/utils'
+import { cn, getTagColor } from '@/lib/utils'
 import { Plus, Tag } from 'lucide-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { CreateTag } from './create-tag'
@@ -40,14 +40,9 @@ export const SearchTag = ({ availableTags }: SearchTagProps) => {
           variant="outline"
           className="justify-start font-normal"
           style={{
-            backgroundColor: getTagBackgroundColor(
+            ...getTagColor(
               availableTags.find(tag => tag.name === currentTag)?.color ?? null,
               false
-            ),
-            borderColor: getTagBackgroundColor(
-              availableTags.find(tag => tag.name === currentTag)?.color ?? null,
-              false,
-              50
             )
           }}
         >
