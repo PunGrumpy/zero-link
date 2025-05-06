@@ -1,8 +1,8 @@
 'use client'
 
-import { AuthButton } from '@/components/auth/auth-button'
-import { MobileMenuTrigger } from '@/components/auth/mobile-menu-trigger'
 import { EarlyAccessBadge } from '@/components/early-access-badge'
+import { AuthButton } from '@/components/menu/auth-button'
+import { MobileMenuTrigger } from '@/components/menu/mobile-menu-trigger'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import type { auth } from '@/lib/auth'

@@ -1,6 +1,6 @@
 'use client'
 
-import { MobileAuthButton } from '@/components/auth/mobile-auth-button'
+import { MobileAuthButton } from '@/components/menu/mobile-auth-button'
 import { ThemeSwitcher } from '@/components/theme-switcher'
 import { Button } from '@/components/ui/button'
 import type { auth } from '@/lib/auth'

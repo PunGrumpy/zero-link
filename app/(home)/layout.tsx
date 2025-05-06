@@ -1,5 +1,5 @@
 import { Header } from '@/app/(home)/components/header'
-import { MobileMenu } from '@/components/auth/mobile-menu'
+import { MobileMenu } from '@/components/menu/mobile-menu'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 import type { ReactNode } from 'react'

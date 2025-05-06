@@ -1,4 +1,4 @@
-import { MobileMenu } from '@/components/auth/mobile-menu'
+import { MobileMenu } from '@/components/menu/mobile-menu'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'

@@ -1,7 +1,7 @@
 'use client'
 
-import { AuthButton } from '@/components/auth/auth-button'
-import { MobileMenuTrigger } from '@/components/auth/mobile-menu-trigger'
+import { AuthButton } from '@/components/menu/auth-button'
+import { MobileMenuTrigger } from '@/components/menu/mobile-menu-trigger'
 import { Button } from '@/components/ui/button'
 import {
   NavigationMenu,
