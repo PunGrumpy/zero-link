@@ -31,7 +31,7 @@ export const Navigation = () => {
     >
       <div className="relative flex transform-none items-center px-4 md:px-6 [&>*]:shrink-0">
         {navigation.map(item => {
-          const isActive = pathname === item.href
+          const isActive = pathname.startsWith(item.href)
 
           return (
             <Link
