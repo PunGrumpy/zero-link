@@ -17,7 +17,11 @@ export const LogIn = () => {
             className="h-12 gap-1.5"
             onClick={async () =>
               await authClient.signIn.social({
-                provider: 'github'
+                provider: 'github',
+                callbackURL: new URL(
+                  '/dashboard',
+                  window.location.origin
+                ).toString()
               })
             }
           >
@@ -29,7 +33,11 @@ export const LogIn = () => {
             className="h-12 gap-1.5 bg-blue-600 text-primary hover:bg-blue-700"
             onClick={async () =>
               await authClient.signIn.social({
-                provider: 'discord'
+                provider: 'discord',
+                callbackURL: new URL(
+                  '/dashboard',
+                  window.location.origin
+                ).toString()
               })
             }
           >
