@@ -67,25 +67,31 @@ export const SearchTag = ({ availableTags }: SearchTagProps) => {
               </Button>
             </CreateTag>
             <div className="my-2 border-t" />
-            {availableTags
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map(tag => (
-                <Button
-                  key={tag.id}
-                  variant="ghost"
-                  className={cn(
-                    'w-full justify-start font-normal',
-                    currentTag === tag.name && 'bg-accent'
-                  )}
-                  onClick={() => handleTagSelect(tag.name)}
-                >
-                  <div
-                    className="flex h-2 w-2 items-center justify-center rounded-full bg-primary text-primary-foreground"
-                    style={{ backgroundColor: tag.color ?? '#000' }}
-                  />
-                  {tag.name}
-                </Button>
-              ))}
+            {availableTags.length > 0 ? (
+              availableTags
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map(tag => (
+                  <Button
+                    key={tag.id}
+                    variant="ghost"
+                    className={cn(
+                      'w-full justify-start font-normal',
+                      currentTag === tag.name && 'bg-accent'
+                    )}
+                    onClick={() => handleTagSelect(tag.name)}
+                  >
+                    <div
+                      className="flex h-2 w-2 items-center justify-center rounded-full bg-primary text-primary-foreground"
+                      style={{ backgroundColor: tag.color ?? '#000' }}
+                    />
+                    {tag.name}
+                  </Button>
+                ))
+            ) : (
+              <div className="text-center text-muted-foreground text-sm">
+                No tags found
+              </div>
+            )}
           </div>
         </ScrollArea>
       </PopoverContent>
