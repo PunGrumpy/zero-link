@@ -82,7 +82,9 @@ export const SearchTag = ({ availableTags }: SearchTagProps) => {
                   >
                     <div
                       className="flex h-2 w-2 items-center justify-center rounded-full bg-primary text-primary-foreground"
-                      style={{ backgroundColor: tag.color ?? '#000' }}
+                      style={{
+                        ...getTagColor(tag.color, true)
+                      }}
                     />
                     {tag.name}
                   </Button>
