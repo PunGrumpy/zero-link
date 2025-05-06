@@ -1,8 +1,9 @@
 'use client'
+
 import { AuthButton } from '@/components/auth/auth-button'
 import { MobileMenuTrigger } from '@/components/auth/mobile-menu-trigger'
+import { EarlyAccessBadge } from '@/components/early-access-badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import type { auth } from '@/lib/auth'
 import { cn } from '@/lib/utils'
@@ -78,9 +79,7 @@ export const Header = ({ session }: HeaderProps) => {
               </Avatar>
               <p className="font-medium text-sm">{session.user.name}</p>
             </Link>
-            <Badge variant="secondary" className="rounded-full px-2">
-              Beta
-            </Badge>
+            <EarlyAccessBadge isEarlyAccess={true} />
           </li>
         </ul>
 
