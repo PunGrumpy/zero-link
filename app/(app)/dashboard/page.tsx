@@ -27,17 +27,21 @@ const filterLinks = (
 }
 
 type DashboardPageProps = {
-  searchParams: {
+  searchParams: Promise<{
     search?: string
     tag?: string
     sort?: 'newest' | 'oldest' | 'most-clicks' | 'least-clicks'
-  }
+  }>
 }
 
 export default async function DashboardPage({
   searchParams
 }: DashboardPageProps) {
-  const { search: searchLink, tag: searchTag, sort = 'newest' } = searchParams
+  const {
+    search: searchLink,
+    tag: searchTag,
+    sort = 'newest'
+  } = await searchParams
   const { links, tags, limit } = await getLinkandTagByUser(sort)
 
   if (!links) {
