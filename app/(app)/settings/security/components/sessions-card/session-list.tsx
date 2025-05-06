@@ -65,7 +65,9 @@ export const SessionList = ({ sessions }: SessionListProps) => {
 
             <div className="flex flex-col gap-0.5">
               <p className="font-semibold text-sm">
-                {isCurrentSession ? 'Current Session' : session.ipAddress}
+                {isCurrentSession
+                  ? 'Current Session'
+                  : (session.ipAddress ?? 'Unknown')}
               </p>
 
               <p className="text-muted-foreground text-xs">
