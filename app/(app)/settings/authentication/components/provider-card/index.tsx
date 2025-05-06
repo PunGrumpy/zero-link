@@ -1,6 +1,6 @@
+import { getProviders } from '@/app/(app)/actions/provider'
 import { SettingCardHeader } from '@/components/setting/setting-card-header'
 import { Card, CardContent } from '@/components/ui/card'
-import { getProviders } from '../../actions/provider'
 import { ProviderList } from './provider-list'
 
 export const ProviderCard = async () => {

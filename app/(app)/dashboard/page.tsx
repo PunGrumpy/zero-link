@@ -1,6 +1,6 @@
+import { type LinkWithTag, getLinkandTagByUser } from '@/app/(app)/actions/link'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
-import { type LinkWithTag, getLinkandTagByUser } from './actions/link'
 import { CardLink } from './components/card-link'
 import { CreateLink } from './components/create-link'
 import { LinkLimit } from './components/link-limit'

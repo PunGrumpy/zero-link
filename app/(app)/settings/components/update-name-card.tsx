@@ -1,5 +1,6 @@
 'use client'
 
+import { updateName } from '@/app/(app)/actions/name'
 import { SettingCardFooter } from '@/components/setting/setting-card-footer'
 import { SettingCardHeader } from '@/components/setting/setting-card-header'
 import { Card, CardContent } from '@/components/ui/card'
@@ -17,7 +18,6 @@ import { User } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { updateName } from '../actions/name'
 
 type UpdateNameCardProps = {
   session: typeof auth.$Infer.Session

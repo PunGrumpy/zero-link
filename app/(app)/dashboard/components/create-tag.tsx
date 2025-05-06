@@ -1,5 +1,6 @@
 'use client'
 
+import { createTag } from '@/app/(app)/actions/tag'
 import { Button } from '@/components/ui/button'
 import { ColorInput } from '@/components/ui/color-input'
 import {
@@ -28,7 +29,6 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { createTag } from '../actions/tag'
 
 type CreateTagProps = {
   children: ReactNode

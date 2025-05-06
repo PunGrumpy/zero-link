@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import type { z } from 'zod'
-import type { formSchema } from '../components/create-tag'
+import type { formSchema } from '../dashboard/components/create-tag'
 
 export const createTag = async (
   value: z.infer<typeof formSchema>

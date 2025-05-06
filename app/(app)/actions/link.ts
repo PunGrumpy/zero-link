@@ -8,7 +8,7 @@ import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import type { z } from 'zod'
-import type { formSchema } from '../components/create-link'
+import type { formSchema } from '../dashboard/components/create-link'
 
 export type LinkWithTag = typeof link.$inferSelect & {
   tags: (typeof tag.$inferSelect)[]

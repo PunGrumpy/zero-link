@@ -1,6 +1,6 @@
 'use client'
 
-import { getAccountByProvider } from '@/app/(app)/settings/actions/account'
+import { getAccountByProvider } from '@/app/(app)/actions/account'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { authClient } from '@/lib/auth-client'
@@ -10,7 +10,7 @@ import type { SocialProvider } from 'better-auth/social-providers'
 import { toast } from 'sonner'
 
 type ProviderListProps = {
-  providers: { provider_id: string }[]
+  providers: { providerId: string }[]
 }
 
 const Providers = [
@@ -76,7 +76,7 @@ export const ProviderList = ({ providers }: ProviderListProps) => {
       <div className="flex flex-col divide-y divide-muted">
         <ul className="m-0 list-none">
           {Providers.map(({ id, name, icon }, index) => {
-            const isConnected = providers.some(p => p.provider_id === id)
+            const isConnected = providers.some(p => p.providerId === id)
 
             return (
               <li

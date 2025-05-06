@@ -35,7 +35,7 @@ import { type ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { createLink, isSlugExists } from '../actions/link'
+import { createLink, isSlugExists } from '../../actions/link'
 import { CreateTag } from './create-tag'
 
 type CreateLinkProps = {

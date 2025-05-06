@@ -11,7 +11,7 @@ import {
 import { cn, formatDate, getTagBackgroundColor } from '@/lib/utils'
 import { Copy, QrCode } from 'lucide-react'
 import Link from 'next/link'
-import type { LinkWithTag } from '../actions/link'
+import type { LinkWithTag } from '../../actions/link'
 import { CopyLink } from './copy-link'
 import { QRCode } from './qr-code'
 import { ShowClick } from './show-click'

@@ -1,6 +1,6 @@
+import { getSessions } from '@/app/(app)/actions/session'
 import { SettingCardHeader } from '@/components/setting/setting-card-header'
 import { Card, CardContent } from '@/components/ui/card'
-import { getSessions } from '../../actions/session'
 import { SessionList } from './session-list'
 
 export const SessionsCard = async () => {
