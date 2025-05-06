@@ -34,3 +34,9 @@ export const footerNavigation = [
     ]
   }
 ]
+
+export const settingsNavigation = [
+  { href: '/settings', label: 'General' },
+  { href: '/settings/authentication', label: 'Authentication' },
+  { href: '/settings/security', label: 'Security' }
+]

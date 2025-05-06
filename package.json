@@ -29,6 +29,7 @@
     "better-auth": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "drizzle-orm": "^0.43.1",
     "lucide-react": "^0.506.0",
     "motion": "^12.9.4",
@@ -40,6 +41,7 @@
     "react-hook-form": "^7.56.2",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
+    "ua-parser-js": "^2.0.3",
     "zod": "^3.24.3",
     "zustand": "^5.0.4"
   },
@@ -51,6 +53,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/ua-parser-js": "^0.7.39",
     "drizzle-kit": "^0.31.0",
     "tailwindcss": "^4",
     "tsx": "^4.19.4",

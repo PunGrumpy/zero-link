@@ -19,6 +19,9 @@ export const auth = betterAuth({
         defaultValue: 10,
         required: true
       }
+    },
+    deleteUser: {
+      enabled: true
     }
   },
   socialProviders: {
