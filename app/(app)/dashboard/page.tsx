@@ -1,10 +1,12 @@
 import { type LinkWithTag, getLinkandTagByUser } from '@/app/(app)/actions/link'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
+import { getTags } from '../actions/tag'
 import { CardLink } from './components/card-link'
 import { CreateLink } from './components/create-link'
 import { LinkLimit } from './components/link-limit'
 import { SearchLink } from './components/search-link'
+import { SearchTag } from './components/search-tag'
 import { SortLink } from './components/sort-link'
 
 const filterLinks = (
@@ -20,7 +22,7 @@ const filterLinks = (
     const matchSlug =
       !searchLink ||
       link.slug.toLocaleLowerCase().includes(searchLink.toLocaleLowerCase())
-    const matchTag = !searchTag || link.tags.some(tag => tag.id === searchTag)
+    const matchTag = !searchTag || link.tags.some(tag => tag.name === searchTag)
 
     return matchSlug && matchTag
   })
@@ -43,6 +45,7 @@ export default async function DashboardPage({
     sort = 'newest'
   } = await searchParams
   const { links, tags, limit } = await getLinkandTagByUser(sort)
+  const availableTags = await getTags()
 
   if (!links) {
     return (
@@ -58,6 +61,7 @@ export default async function DashboardPage({
     <>
       <div className="flex flex-initial flex-row items-center gap-3">
         <SearchLink />
+        <SearchTag availableTags={availableTags} />
         <LinkLimit userLink={links.length} maxLink={limit} />
         <SortLink />
         <CreateLink tags={tags}>

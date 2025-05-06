@@ -3,6 +3,7 @@
 import { db } from '@/db'
 import { tag } from '@/db/schema'
 import { auth } from '@/lib/auth'
+import { eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -42,4 +43,20 @@ export const createTag = async (
     success: true,
     message: 'Tag created successfully'
   }
+}
+
+export const getTags = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if (!session) {
+    redirect('/login')
+  }
+
+  const tags = await db.query.tag.findMany({
+    where: eq(tag.createdBy, session.user.id)
+  })
+
+  return tags
 }
