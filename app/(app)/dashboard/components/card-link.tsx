@@ -56,7 +56,9 @@ export const CardLink = ({ filteredLink }: CardLinkProps) => {
         >
           <section className="flex flex-initial items-stretch justify-between gap-4">
             <Link
-              href={`/${link.slug}`}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 overflow-hidden"
               passHref
             >
