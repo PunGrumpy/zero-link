@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const route = pathname.split('/').pop()
 
-  if (publicRoutes.includes(pathname)) {
+  if (!protectedRoutes.includes(pathname)) {
     return NextResponse.next()
   }
 
