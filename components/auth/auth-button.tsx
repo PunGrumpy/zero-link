@@ -80,7 +80,7 @@ export const AuthButton = ({ children, session }: AuthButtonProps) => {
               signOut({
                 fetchOptions: {
                   onSuccess: () => {
-                    router.push('/')
+                    router.refresh()
                   }
                 }
               })

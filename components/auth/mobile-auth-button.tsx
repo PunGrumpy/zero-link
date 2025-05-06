@@ -61,7 +61,7 @@ export const MobileAuthButton = ({
                 signOut({
                   fetchOptions: {
                     onSuccess: () => {
-                      router.push('/')
+                      router.refresh()
                     }
                   }
                 })
