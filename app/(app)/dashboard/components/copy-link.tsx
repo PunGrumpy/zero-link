@@ -1,18 +1,20 @@
+'use client'
+
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
-import { env } from '@/lib/env'
 import { Clipboard, Link } from 'lucide-react'
 import { toast } from 'sonner'
 
 type CopyLinkProps = {
+  baseUrl: string
   slug: string
 }
 
-export const CopyLink = ({ slug }: CopyLinkProps) => {
+export const CopyLink = ({ baseUrl, slug }: CopyLinkProps) => {
   const { copyToClipboard } = useCopyToClipboard()
 
   const handleCopyLink = () => {
-    copyToClipboard(`${env.NEXT_PUBLIC_PRODUCTION_URL}/${slug}`)
+    copyToClipboard(`${baseUrl}/${slug}`)
     toast.success('Link copied to clipboard', {
       icon: <Link className="h-4 w-4" />,
       description: 'You can now paste it anywhere'

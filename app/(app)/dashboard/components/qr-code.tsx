@@ -15,15 +15,15 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import type { link } from '@/db/schema'
-import { env } from '@/lib/env'
 import { Download } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 
 type QRCodeProps = {
+  baseUrl: string
   linkInfo: typeof link.$inferSelect
 }
 
-export const QRCode = ({ linkInfo }: QRCodeProps) => {
+export const QRCode = ({ baseUrl, linkInfo }: QRCodeProps) => {
   const handleDownloadQRCode = (type: 'png' | 'svg') => {
     const svg = document.getElementById('qr-code') as HTMLElement
     const svgData = new XMLSerializer().serializeToString(svg)
@@ -68,7 +68,7 @@ export const QRCode = ({ linkInfo }: QRCodeProps) => {
             id="qr-code"
             className="h-32 w-32"
             style={{ height: 'auto' }}
-            value={`${env.NEXT_PUBLIC_PRODUCTION_URL}/${linkInfo.slug}`}
+            value={`${baseUrl}/${linkInfo.slug}`}
           />
         </div>
       </div>
