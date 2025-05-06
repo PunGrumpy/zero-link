@@ -6,21 +6,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import type { tag } from '@/db/schema'
 import { env } from '@/lib/env'
 import { cn, formatDate, getTagColor } from '@/lib/utils'
-import { Copy, QrCode, Trash2 } from 'lucide-react'
+import { Copy, Edit, QrCode, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import type { LinkWithTag } from '../../actions/link'
 import { CopyLink } from './copy-link'
 import { DeleteLink } from './delete-link'
+import { EditLink } from './edit-link'
 import { QRCode } from './qr-code'
 import { ShowClick } from './show-click'
 
 type CardLinkProps = {
+  tags: (typeof tag.$inferSelect)[]
   filteredLink: LinkWithTag[]
 }
 
-export const CardLink = ({ filteredLink }: CardLinkProps) => {
+export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
   const baseUrl = env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:3000'
@@ -66,6 +69,15 @@ export const CardLink = ({ filteredLink }: CardLinkProps) => {
                 </DropdownMenu>
                 <QRCode baseUrl={baseUrl} linkInfo={link} />
               </Dialog>
+              <EditLink link={link} tags={tags}>
+                <button
+                  type="button"
+                  className="transition-opacity hover:opacity-75"
+                >
+                  <Edit className="h-4 w-4" />
+                  <span className="sr-only">Edit Link</span>
+                </button>
+              </EditLink>
               <DeleteLink slug={link.slug}>
                 <button
                   type="button"

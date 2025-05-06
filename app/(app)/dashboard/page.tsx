@@ -78,7 +78,7 @@ export default async function DashboardPage({
           </Button>
         </CreateLink>
       </div>
-      <CardLink filteredLink={filteredLinks} />
+      <CardLink tags={tags} filteredLink={filteredLinks} />
     </>
   )
 }

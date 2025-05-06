@@ -190,3 +190,73 @@ export const deleteLink = async (
     message: 'Link deleted successfully.'
   }
 }
+
+export const updateLink = async (
+  oldSlug: string,
+  value: z.infer<typeof formSchema>
+): Promise<{
+  success: boolean
+  message: string
+}> => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if (!session) {
+    redirect('/login')
+  }
+
+  const linkToUpdate = await db.query.link.findFirst({
+    where: eq(link.slug, oldSlug)
+  })
+
+  if (!linkToUpdate) {
+    return {
+      success: false,
+      message: 'Link not found.'
+    }
+  }
+
+  if (linkToUpdate.createdBy !== session.user.id) {
+    return {
+      success: false,
+      message: 'You do not have permission to update this link.'
+    }
+  }
+
+  if (oldSlug !== value.slug) {
+    const slugExists = await isSlugExists(value.slug)
+    if (slugExists) {
+      return {
+        success: false,
+        message: 'Slug already exists.'
+      }
+    }
+  }
+
+  await db
+    .update(link)
+    .set({
+      slug: value.slug,
+      url: value.url,
+      description: value.description
+    })
+    .where(eq(link.slug, oldSlug))
+
+  await db.delete(linkTag).where(eq(linkTag.linkId, linkToUpdate.id))
+  if (value.selectedTags && value.selectedTags.length > 0) {
+    await db.insert(linkTag).values(
+      value.selectedTags.map(tagId => ({
+        linkId: linkToUpdate.id,
+        tagId
+      }))
+    )
+  }
+
+  revalidatePath('/dashboard')
+
+  return {
+    success: true,
+    message: 'Link updated successfully.'
+  }
+}
