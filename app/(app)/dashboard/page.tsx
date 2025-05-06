@@ -48,25 +48,19 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
   const filteredLinks = filterLinks(links, searchLink, searchTag)
 
   return (
-    <div className="container relative grid auto-rows-fr md:mx-auto">
-      <section className="grid-cols-1 grid-rows-2">
-        <section className="px-4 py-6 md:px-6">
-          <div className="flex flex-initial flex-col items-stretch gap-4 sm:gap-6">
-            <div className="flex flex-initial flex-row items-center gap-3">
-              <SearchLink />
-              <LinkLimit userLink={links.length} maxLink={limit} />
-              <SortLink />
-              <CreateLink tags={tags}>
-                <Button>
-                  <Plus className="flex h-4 w-4 md:hidden" />
-                  <p className="hidden capitalize md:flex">Add new link</p>
-                </Button>
-              </CreateLink>
-            </div>
-            <CardLink filteredLink={filteredLinks} />
-          </div>
-        </section>
-      </section>
-    </div>
+    <>
+      <div className="flex flex-initial flex-row items-center gap-3">
+        <SearchLink />
+        <LinkLimit userLink={links.length} maxLink={limit} />
+        <SortLink />
+        <CreateLink tags={tags}>
+          <Button>
+            <Plus className="flex h-4 w-4 md:hidden" />
+            <p className="hidden capitalize md:flex">Add new link</p>
+          </Button>
+        </CreateLink>
+      </div>
+      <CardLink filteredLink={filteredLinks} />
+    </>
   )
 }
