@@ -21,9 +21,11 @@ export const urlFromSlug = async (
     }
   }
 
-  const linkData = await db.select().from(link).where(eq(link.slug, slug))
+  const linkData = await db.query.link.findFirst({
+    where: eq(link.slug, slug)
+  })
 
-  if (!linkData || linkData.length === 0) {
+  if (!linkData) {
     return {
       success: false,
       message: 'Link not found',
@@ -34,14 +36,14 @@ export const urlFromSlug = async (
   await db
     .update(link)
     .set({
-      clicks: linkData[0].clicks + 1,
+      clicks: linkData.clicks + 1,
       lastClicked: new Date()
     })
-    .where(eq(link.id, linkData[0].id))
+    .where(eq(link.id, linkData.id))
 
   return {
     success: true,
     message: 'Link found',
-    url: linkData[0].url
+    url: linkData.url
   }
 }
