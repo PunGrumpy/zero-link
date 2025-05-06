@@ -21,10 +21,11 @@ export const formatDate = (date: Date) => {
 
 export const getTagBackgroundColor = (
   tagColor: string | null,
-  isSelected: boolean
+  isSelected: boolean,
+  opacity = 25
 ) => {
   if (!tagColor) {
     return ''
   }
-  return isSelected ? tagColor : `${tagColor}1D`
+  return isSelected ? tagColor : `${tagColor}${opacity}`
 }
