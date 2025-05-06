@@ -23,7 +23,7 @@ import { Input } from '@/components/ui/input'
 import type { tag } from '@/db/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertCircle, CheckCircle2 } from 'lucide-react'
-import type { ReactNode } from 'react'
+import type { FormEvent, ReactNode } from 'react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -83,12 +83,18 @@ export const CreateTag = ({ children, tags }: CreateTagProps) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent onClick={e => e.stopPropagation()}>
         <DialogHeader>
           <DialogTitle>Create new tag</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={async (e: FormEvent) => {
+              e.preventDefault()
+              e.stopPropagation()
+              await form.handleSubmit(onSubmit)(e)
+            }}
+          >
             <div className="grid gap-4 py-4">
               <FormField
                 control={form.control}
