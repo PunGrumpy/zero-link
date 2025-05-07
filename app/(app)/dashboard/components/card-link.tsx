@@ -11,6 +11,7 @@ import Link from 'next/link'
 import type { LinkWithTag } from '../../actions/link'
 import { CopyLink } from './copy-link'
 import { DeleteLink } from './delete-link'
+import { DescriptionCard } from './description-card'
 import { EditLink } from './edit-link'
 import { QRCode } from './qr-code'
 import { ShowClick } from './show-click'
@@ -59,6 +60,9 @@ export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
             <div className="flex items-center gap-3">
               <ShowClick clicks={link.clicks} lastClick={link.lastClicked} />
               <CopyLink baseUrl={baseUrl} slug={link.slug} />
+              {link.description && (
+                <DescriptionCard description={link.description} />
+              )}
               <DropdownMenu>
                 <DropdownMenuTrigger className="transition-opacity hover:opacity-75">
                   <MoreHorizontal className="h-4 w-4" />
