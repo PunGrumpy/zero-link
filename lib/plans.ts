@@ -1,4 +1,4 @@
-const POLAR_ENVIRONMENT = process.env.POLAR_ENVIRONMENT
+import { env } from './env'
 
 export const PLANS = {
   production: {
@@ -16,7 +16,7 @@ export const PLANS = {
 }
 
 export const getPlans = () => {
-  return PLANS[POLAR_ENVIRONMENT as keyof typeof PLANS]
+  return PLANS[env.POLAR_ENVIRONMENT as keyof typeof PLANS]
 }
 
 export const getPlanByProductId = (productId: string) => {
