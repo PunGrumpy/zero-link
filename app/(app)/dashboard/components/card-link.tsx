@@ -35,18 +35,26 @@ export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
             'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50'
           )}
         >
-          <section className="flex flex-initial items-stretch justify-between gap-4">
-            <Link
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 overflow-hidden"
-              passHref
-            >
-              <p className="truncate font-medium hover:underline">
-                {link.slug}
-              </p>
-            </Link>
+          <section className="flex flex-initial items-start justify-between gap-4">
+            <div className="flex flex-col gap-0.5 overflow-hidden">
+              <Link
+                href={`${baseUrl}/${link.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium hover:underline"
+                passHref
+              >
+                {baseUrl}/{link.slug}
+              </Link>
+              <Link
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="max-w-2xs truncate text-muted-foreground text-xs hover:underline"
+              >
+                {link.url}
+              </Link>
+            </div>
 
             <div className="flex items-center gap-3">
               <ShowClick clicks={link.clicks} lastClick={link.lastClicked} />
@@ -64,11 +72,11 @@ export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
             </div>
           </section>
 
-          <section className="flex-initial flex-row items-center gap-4">
+          <section className="flex flex-initial flex-row items-center gap-4">
             <p className="text-muted-foreground text-sm">
-              {link.description ? link.description : 'No description'}
+              {link.description ?? link.description}
             </p>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-muted-foreground text-xs">
               Created on {formatDate(link.createdAt)}
             </p>
           </section>
