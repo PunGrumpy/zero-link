@@ -18,13 +18,12 @@ Unleash the thunderbolt of efficiency with our divine URL shortener
 ## 🧑🏻‍💻 Stack
 
 - ▲ Next.js 15 with TypeScript for type safety
-- 🔐 Authentication system using Better Auth
-- 🎨 Modern UI with Radix UI components
-- 🌙 Dark mode support with next-themes
-- 📱 Responsive design
-- 🎯 TypeScript for type safety
-- 🎨 Tailwind CSS for styling
-- 📊 Drizzle ORM for manage with Neon Serverless Postgres
+- 🔐 Better Auth
+- 🎨 Radix UI components
+- 🌙 next-themes
+- 🎨 Tailwind CSS
+- 📊 Drizzle ORM
+- 💡 Neon Serverless Postgres
 
 ## 🤝 Contributing
 
