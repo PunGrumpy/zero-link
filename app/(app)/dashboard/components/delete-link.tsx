@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import {
   Form,
   FormControl,
@@ -23,7 +24,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertCircle, Trash2 } from 'lucide-react'
-import { type ReactNode, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -38,10 +39,9 @@ const formSchema = z.object({
 
 type DeleteLinkProps = {
   slug: string
-  children: ReactNode
 }
 
-export const DeleteLink = ({ slug, children }: DeleteLinkProps) => {
+export const DeleteLink = ({ slug }: DeleteLinkProps) => {
   const [open, setOpen] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -90,7 +90,14 @@ export const DeleteLink = ({ slug, children }: DeleteLinkProps) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger asChild onSelect={e => e.preventDefault()}>
+        <DropdownMenuItem
+          variant="destructive"
+          className="bg-destructive/10 transition-colors duration-300"
+        >
+          <Trash2 className="h-4 w-4" /> Delete Link
+        </DropdownMenuItem>
+      </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Delete Link</DialogTitle>
@@ -107,7 +114,6 @@ export const DeleteLink = ({ slug, children }: DeleteLinkProps) => {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            {/* <div className="grid gap-4 py-4"> */}
             <div className="m-[0_calc(-1*24px)] grid gap-6 border-y bg-input/30 p-6">
               <FormField
                 control={form.control}

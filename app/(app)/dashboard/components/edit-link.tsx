@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import {
   Form,
   FormControl,
@@ -23,8 +24,8 @@ import { Textarea } from '@/components/ui/textarea'
 import type { tag } from '@/db/schema'
 import { getTagColor } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AlertCircle, CheckCircle2, Pencil, Plus, Tags } from 'lucide-react'
-import { type ReactNode, useState } from 'react'
+import { AlertCircle, CheckCircle2, Edit, Plus, Tags } from 'lucide-react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import type { z } from 'zod'
@@ -34,12 +35,11 @@ import { formSchema } from './create-link'
 import { CreateTag } from './create-tag'
 
 type EditLinkProps = {
-  children: ReactNode
   link: LinkWithTag
   tags: (typeof tag.$inferSelect)[]
 }
 
-export const EditLink = ({ children, link, tags }: EditLinkProps) => {
+export const EditLink = ({ link, tags }: EditLinkProps) => {
   const [open, setOpen] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -74,7 +74,11 @@ export const EditLink = ({ children, link, tags }: EditLinkProps) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger asChild onSelect={e => e.preventDefault()}>
+        <DropdownMenuItem>
+          <Edit className="h-4 w-4" /> Edit Link
+        </DropdownMenuItem>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit link</DialogTitle>
@@ -177,7 +181,7 @@ export const EditLink = ({ children, link, tags }: EditLinkProps) => {
                 <Button variant="ghost">Cancel</Button>
               </DialogClose>
               <Button type="submit">
-                <Pencil className="h-4 w-4" />
+                <Edit className="h-4 w-4" />
                 Update {form.watch('slug') || 'Link'}
               </Button>
             </DialogFooter>

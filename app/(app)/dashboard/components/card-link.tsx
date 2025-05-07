@@ -1,15 +1,13 @@
 import { buttonVariants } from '@/components/ui/button'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import type { tag } from '@/db/schema'
 import { env } from '@/lib/env'
 import { cn, formatDate, getTagColor } from '@/lib/utils'
-import { Copy, Edit, QrCode, Trash2 } from 'lucide-react'
+import { MoreHorizontal } from 'lucide-react'
 import Link from 'next/link'
 import type { LinkWithTag } from '../../actions/link'
 import { CopyLink } from './copy-link'
@@ -53,40 +51,17 @@ export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
 
             <div className="flex items-center gap-3">
               <ShowClick clicks={link.clicks} lastClick={link.lastClicked} />
-              <Dialog>
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="transition-opacity hover:opacity-75">
-                    <Copy className="h-4 w-4" />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <CopyLink baseUrl={baseUrl} slug={link.slug} />
-                    <DialogTrigger asChild>
-                      <DropdownMenuItem>
-                        <QrCode className="h-4 w-4" /> Copy QR Code
-                      </DropdownMenuItem>
-                    </DialogTrigger>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-                <QRCode baseUrl={baseUrl} linkInfo={link} />
-              </Dialog>
-              <EditLink link={link} tags={tags}>
-                <button
-                  type="button"
-                  className="transition-opacity hover:opacity-75"
-                >
-                  <Edit className="h-4 w-4" />
-                  <span className="sr-only">Edit Link</span>
-                </button>
-              </EditLink>
-              <DeleteLink slug={link.slug}>
-                <button
-                  type="button"
-                  className="text-destructive hover:text-destructive"
-                >
-                  <Trash2 className="h-4 w-4" />
-                  <span className="sr-only">Delete Link</span>
-                </button>
-              </DeleteLink>
+              <CopyLink baseUrl={baseUrl} slug={link.slug} />
+              <DropdownMenu>
+                <DropdownMenuTrigger className="transition-opacity hover:opacity-75">
+                  <MoreHorizontal className="h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="grid gap-0.5">
+                  <QRCode baseUrl={baseUrl} linkInfo={link} />
+                  <EditLink link={link} tags={tags} />
+                  <DeleteLink slug={link.slug} />
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </section>
 

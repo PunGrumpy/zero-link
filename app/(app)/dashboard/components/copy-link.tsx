@@ -1,8 +1,6 @@
 'use client'
-
-import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
-import { Clipboard, Link } from 'lucide-react'
+import { Clipboard } from 'lucide-react'
 import { toast } from 'sonner'
 
 type CopyLinkProps = {
@@ -16,14 +14,19 @@ export const CopyLink = ({ baseUrl, slug }: CopyLinkProps) => {
   const handleCopyLink = () => {
     copyToClipboard(`${baseUrl}/${slug}`)
     toast.success('Link copied to clipboard', {
-      icon: <Link className="h-4 w-4" />,
+      icon: <Clipboard className="h-4 w-4" />,
       description: 'You can now paste it anywhere'
     })
   }
 
   return (
-    <DropdownMenuItem onClick={handleCopyLink}>
-      <Clipboard className="h-4 w-4" /> Copy Link
-    </DropdownMenuItem>
+    <button
+      type="button"
+      className="transition-opacity hover:opacity-75"
+      onClick={handleCopyLink}
+    >
+      <Clipboard className="h-4 w-4" />
+      <span className="sr-only">Copy Link</span>
+    </button>
   )
 }
