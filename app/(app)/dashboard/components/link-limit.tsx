@@ -1,11 +1,12 @@
 import { buttonVariants } from '@/components/ui/button'
 import {
   Tooltip,
+  TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
-import { Package, TriangleAlert } from 'lucide-react'
+import { Link, TriangleAlert } from 'lucide-react'
 
 type LinkLimitProps = {
   userLink: number
@@ -38,16 +39,19 @@ export const LinkLimit = ({ userLink, maxLink }: LinkLimitProps) => {
               {maxLimit ? (
                 <TriangleAlert className="h-4 w-4" />
               ) : (
-                <Package className="h-4 w-4" />
+                <Link className="h-4 w-4" />
               )}
               <span>
                 {userLink < 10 ? `${userLink}` : userLink}
-                {'/'}
+                {' / '}
                 {maxLink < 10 ? `0${maxLink}` : maxLink}
               </span>
             </div>
           </div>
         </TooltipTrigger>
+        <TooltipContent>
+          You have {userLink} links out of {maxLink}
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )
