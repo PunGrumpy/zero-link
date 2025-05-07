@@ -1,4 +1,3 @@
-import { buttonVariants } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -78,14 +77,12 @@ export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
             {link.tags.map(tag => (
               <div
                 key={tag.id}
-                className={buttonVariants({
-                  variant: 'outline',
-                  size: 'sm',
-                  className: 'text-xs lowercase'
-                })}
+                className={cn(
+                  'inline-flex items-center justify-center gap-2 whitespace-nowrap',
+                  'border text-xs lowercase',
+                  'h-6 rounded-full px-2 py-0.5'
+                )}
                 style={{
-                  borderRadius: '9999px',
-                  padding: '0.5rem 0.75rem',
                   ...getTagColor(tag.color, false)
                 }}
               >
