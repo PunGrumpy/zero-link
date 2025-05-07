@@ -10,6 +10,15 @@ const protectedRoutes = ['/dashboard', '/settings']
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const route = pathname.split('/').pop()
+  const { data: session } = await betterFetch<Session>(
+    '/api/auth/get-session',
+    {
+      baseURL: request.nextUrl.origin,
+      headers: {
+        cookie: request.headers.get('cookie') || ''
+      }
+    }
+  )
 
   if (route && !protectedRoutes.includes(route)) {
     const data = await urlFromSlug(route)
@@ -21,16 +30,6 @@ export async function middleware(request: NextRequest) {
   if (!protectedRoutes.includes(pathname)) {
     return NextResponse.next()
   }
-
-  const { data: session } = await betterFetch<Session>(
-    '/api/auth/get-session',
-    {
-      baseURL: request.nextUrl.origin,
-      headers: {
-        cookie: request.headers.get('cookie') || ''
-      }
-    }
-  )
 
   if (!session) {
     return NextResponse.redirect(new URL('/login', request.url))
