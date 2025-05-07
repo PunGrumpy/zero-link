@@ -72,10 +72,7 @@ export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
             </div>
           </section>
 
-          <section className="flex flex-initial flex-row items-center gap-4">
-            <p className="text-muted-foreground text-sm">
-              {link.description ?? link.description}
-            </p>
+          <section className="flex flex-initial flex-col items-start gap-3">
             <p className="text-muted-foreground text-xs">
               Created on {formatDate(link.createdAt)}
             </p>
