@@ -5,6 +5,7 @@ import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { nextCookies } from 'better-auth/next-js'
 import { admin, twoFactor } from 'better-auth/plugins'
+import { eq } from 'drizzle-orm'
 import { env } from './env'
 import { getPlans } from './plans'
 import { client } from './polar'
@@ -25,12 +26,16 @@ export const auth = betterAuth({
     additionalFields: {
       planId: {
         type: 'string',
-        required: true,
-        defaultValue: getPlans().starter.id
+        required: false
       }
     },
     deleteUser: {
-      enabled: true
+      enabled: true,
+      afterDelete: async user => {
+        await client.customers.delete({
+          id: user.id
+        })
+      }
     }
   },
   socialProviders: {
@@ -63,10 +68,23 @@ export const auth = betterAuth({
           }
         ],
         successUrl: '/checkout/success?redirectPath=/dashboard'
+      },
+      webhooks: {
+        secret: env.POLAR_WEBHOOK_SECRET,
+        onSubscriptionActive: async subscription => {
+          await db.update(schema.user).set({
+            planId: subscription.data.id
+          })
+        },
+        onSubscriptionUpdated: async subscription => {
+          await db
+            .update(schema.user)
+            .set({
+              planId: subscription.data.id
+            })
+            .where(eq(schema.user.id, subscription.data.id))
+        }
       }
-      // webhooks: {
-      //   secret: env.POLAR_WEBHOOK_SECRET
-      // }
     }),
     nextCookies()
   ]

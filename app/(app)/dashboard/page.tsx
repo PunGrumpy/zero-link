@@ -51,8 +51,9 @@ export default async function DashboardPage({
     tag: searchTag,
     sort = 'newest'
   } = await searchParams
-  const { links, tags, limit } = await getLinkandTagByUser(sort)
+  const { links, tags } = await getLinkandTagByUser(sort)
   const availableTags = await getTags()
+  const limit = 10
 
   if (!links) {
     return (
@@ -69,7 +70,7 @@ export default async function DashboardPage({
       <div className="flex flex-initial flex-row items-center gap-3">
         <SearchLink />
         <SearchTag availableTags={availableTags} />
-        <LinkLimit userLink={links.length} maxLink={limit} />
+        <LinkLimit userLink={links.length} maxLink={limit || 0} />
         <SortLink />
         <CreateLink tags={tags}>
           <Button>

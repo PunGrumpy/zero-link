@@ -1,3 +1,4 @@
+import {} from 'lucide-react'
 import { env } from './env'
 
 export const PLANS = {

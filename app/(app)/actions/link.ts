@@ -20,7 +20,6 @@ export const getLinkandTagByUser = async (
 ): Promise<{
   links: LinkWithTag[]
   tags: (typeof tag.$inferSelect)[]
-  limit: number
 }> => {
   const session = await auth.api.getSession({
     headers: await headers()
@@ -81,8 +80,7 @@ export const getLinkandTagByUser = async (
 
   return {
     links: sortedLinks,
-    tags,
-    limit: session.user.limitLinks
+    tags
   }
 }
 
@@ -114,9 +112,8 @@ export const createLink = async (
     })
     .from(link)
     .where(eq(link.createdBy, session.user.id))
-  const limitLink = session.user.limitLinks
 
-  if (countLink[0].count >= limitLink) {
+  if (countLink[0].count >= 10) {
     return {
       success: false,
       message: 'You have reached the limit of links.'

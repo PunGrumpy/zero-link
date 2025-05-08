@@ -15,8 +15,8 @@ export const env = createEnv({
     BETTERSTACK_API_KEY: z.string().min(1),
     BETTERSTACK_URL: z.string().min(1).url(),
     POLAR_ACCESS_TOKEN: z.string().startsWith('polar_oat_'),
-    POLAR_ENVIRONMENT: z.enum(['production', 'sandbox'])
-    // POLAR_WEBHOOK_SECRET: z.string().min(1)
+    POLAR_ENVIRONMENT: z.enum(['production', 'sandbox']),
+    POLAR_WEBHOOK_SECRET: z.string().min(1)
   },
   client: {},
   runtimeEnv: {
@@ -30,7 +30,7 @@ export const env = createEnv({
     BETTERSTACK_API_KEY: process.env.BETTERSTACK_API_KEY,
     BETTERSTACK_URL: process.env.BETTERSTACK_URL,
     POLAR_ACCESS_TOKEN: process.env.POLAR_ACCESS_TOKEN,
-    POLAR_ENVIRONMENT: process.env.POLAR_ENVIRONMENT
-    // POLAR_WEBHOOK_SECRET: process.env.POLAR_WEBHOOK_SECRET
+    POLAR_ENVIRONMENT: process.env.POLAR_ENVIRONMENT,
+    POLAR_WEBHOOK_SECRET: process.env.POLAR_WEBHOOK_SECRET
   }
 })
