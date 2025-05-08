@@ -22,7 +22,9 @@ export const user = pgTable('user', {
   banReason: text('ban_reason'),
   banExpires: timestamp('ban_expires'),
   twoFactorEnabled: boolean('two_factor_enabled'),
-  limitLinks: integer('limit_links').notNull()
+  planId: text('plan_id')
+    .notNull()
+    .references(() => plan.id, { onDelete: 'cascade' })
 })
 
 export const session = pgTable('session', {
@@ -125,3 +127,13 @@ export const linkTag = pgTable(
   },
   table => [primaryKey({ columns: [table.linkId, table.tagId] })]
 )
+export const plan = pgTable('plan', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  key: text('key').notNull(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+  canceledAt: timestamp('canceled_at'),
+  linksLimit: integer('links_limit').notNull(),
+  customSlugs: boolean('custom_slugs').notNull()
+})

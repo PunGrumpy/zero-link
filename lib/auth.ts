@@ -23,10 +23,10 @@ export const auth = betterAuth({
   trustedOrigins: [baseUrl],
   user: {
     additionalFields: {
-      limitLinks: {
-        type: 'number',
-        defaultValue: 10,
-        required: true
+      planId: {
+        type: 'string',
+        required: true,
+        defaultValue: getPlans().starter.id
       }
     },
     deleteUser: {
@@ -64,6 +64,9 @@ export const auth = betterAuth({
         ],
         successUrl: '/checkout/success?redirectPath=/dashboard'
       }
+      // webhooks: {
+      //   secret: env.POLAR_WEBHOOK_SECRET
+      // }
     }),
     nextCookies()
   ]

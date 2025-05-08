@@ -12,6 +12,18 @@ export const PLANS = {
       name: 'Pro',
       key: 'pro'
     }
+  },
+  sandbox: {
+    starter: {
+      id: '442c06cb-8290-4a00-b30e-bf925407ba60',
+      name: 'Starter',
+      key: 'starter'
+    },
+    pro: {
+      id: '411a2e0c-cc93-4ddd-8552-e21761c3826f',
+      name: 'Pro',
+      key: 'pro'
+    }
   }
 }
 
