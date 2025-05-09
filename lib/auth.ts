@@ -83,6 +83,24 @@ export const auth = betterAuth({
               planId: subscription.data.id
             })
             .where(eq(schema.user.id, subscription.data.id))
+        },
+        // Subscription has been explicitly canceled by the user
+        onSubscriptionCanceled: async subscription => {
+          await db
+            .update(schema.user)
+            .set({
+              planId: null
+            })
+            .where(eq(schema.user.id, subscription.data.id))
+        },
+        // Subscription has been revoked/peroid has ended with no renewal
+        onSubscriptionRevoked: async subscription => {
+          await db
+            .update(schema.user)
+            .set({
+              planId: null
+            })
+            .where(eq(schema.user.id, subscription.data.id))
         }
       }
     }),
