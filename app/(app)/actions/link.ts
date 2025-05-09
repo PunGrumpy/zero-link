@@ -3,6 +3,7 @@
 import { db } from '@/db'
 import { link, linkTag, tag } from '@/db/schema'
 import { auth } from '@/lib/auth'
+import { getPlanByProductId, getPlanLimit } from '@/lib/plans'
 import { count, eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
@@ -102,6 +103,10 @@ export const createLink = async (
     headers: await headers()
   })
 
+  const { activeSubscriptions } = await auth.api.polarCustomerState({
+    headers: await headers()
+  })
+
   if (!session) {
     redirect('/login')
   }
@@ -113,7 +118,14 @@ export const createLink = async (
     .from(link)
     .where(eq(link.createdBy, session.user.id))
 
-  if (countLink[0].count >= 10) {
+  const plan =
+    activeSubscriptions.length > 0
+      ? getPlanByProductId(activeSubscriptions[0].productId)
+      : 'starter'
+
+  const { links: maxLinks } = getPlanLimit(plan)
+
+  if (countLink[0].count >= maxLinks) {
     return {
       success: false,
       message: 'You have reached the limit of links.'
