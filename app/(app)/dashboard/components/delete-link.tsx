@@ -124,7 +124,7 @@ export const DeleteLink = ({ slug }: DeleteLinkProps) => {
                       For verification, enter the <b>slug</b> below
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder={slug} />
+                      <Input {...field} autoComplete="off" placeholder={slug} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -140,7 +140,11 @@ export const DeleteLink = ({ slug }: DeleteLinkProps) => {
                       To verify, type <b>delete this link</b> below
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        {...field}
+                        autoComplete="off"
+                        placeholder="delete this link"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
