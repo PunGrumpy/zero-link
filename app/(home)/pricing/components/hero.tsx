@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 
 export const Hero = () => {
   return (
-    <Section crossPosition="both" className="border-t p-10">
+    <Section crossPosition="top-left" className="border-t p-24">
       <div className="flex flex-col items-center gap-4">
         <h1
           className={cn(
