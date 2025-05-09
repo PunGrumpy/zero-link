@@ -1,14 +1,12 @@
 import { cn } from '@/lib/utils'
 import type { HTMLAttributes } from 'react'
 
-const Cross = () => {
-  return (
-    <div className="relative z-50 grid h-4 w-4 self-center md:h-5 md:w-5">
-      <div className="absolute h-4 w-2 border-muted-foreground border-r md:h-5 md:w-2.5" />
-      <div className="absolute h-2 w-4 border-muted-foreground border-b md:h-2.5 md:w-5" />
-    </div>
-  )
-}
+const Cross = () => (
+  <div className="relative z-50 grid h-4 w-4 self-center md:h-5 md:w-5">
+    <div className="absolute h-4 w-2 border-muted-foreground border-r md:h-5 md:w-2.5" />
+    <div className="absolute h-2 w-4 border-muted-foreground border-b md:h-2.5 md:w-5" />
+  </div>
+)
 
 type SectionProps = HTMLAttributes<HTMLDivElement> & {
   crossPosition?: 'top-left' | 'bottom-right' | 'both' | 'none'

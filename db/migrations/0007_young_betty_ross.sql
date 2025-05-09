@@ -1,0 +1,1 @@
+ALTER TABLE "user" ALTER COLUMN "plan_id" DROP NOT NULL;

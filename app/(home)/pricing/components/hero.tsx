@@ -12,11 +12,10 @@ export const Hero = () => {
             'md:text-5xl md:leading-tight'
           )}
         >
-          Zero Link
+          Find a plan to power your apps.
         </h1>
         <p className="block text-muted-foreground md:text-md">
-          Unleash the thunderbolt of efficiency with our divine URL shortener
-          that will make your life easier.
+          Zero Link is a URL shortener that allows you to create and manage your
         </p>
       </div>
     </Section>

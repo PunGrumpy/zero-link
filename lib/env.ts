@@ -13,7 +13,10 @@ export const env = createEnv({
     GITHUB_CLIENT_ID: z.string().min(1),
     GITHUB_CLIENT_SECRET: z.string().min(1),
     BETTERSTACK_API_KEY: z.string().min(1),
-    BETTERSTACK_URL: z.string().min(1).url()
+    BETTERSTACK_URL: z.string().min(1).url(),
+    POLAR_ACCESS_TOKEN: z.string().startsWith('polar_oat_'),
+    POLAR_ENVIRONMENT: z.enum(['production', 'sandbox']),
+    POLAR_WEBHOOK_SECRET: z.string().min(1)
   },
   client: {},
   runtimeEnv: {
@@ -25,6 +28,9 @@ export const env = createEnv({
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
     BETTERSTACK_API_KEY: process.env.BETTERSTACK_API_KEY,
-    BETTERSTACK_URL: process.env.BETTERSTACK_URL
+    BETTERSTACK_URL: process.env.BETTERSTACK_URL,
+    POLAR_ACCESS_TOKEN: process.env.POLAR_ACCESS_TOKEN,
+    POLAR_ENVIRONMENT: process.env.POLAR_ENVIRONMENT,
+    POLAR_WEBHOOK_SECRET: process.env.POLAR_WEBHOOK_SECRET
   }
 })

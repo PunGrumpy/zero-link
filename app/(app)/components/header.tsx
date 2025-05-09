@@ -1,6 +1,3 @@
-'use client'
-
-import { EarlyAccessBadge } from '@/components/early-access-badge'
 import { AuthButton } from '@/components/menu/auth-button'
 import { MobileMenuTrigger } from '@/components/menu/mobile-menu-trigger'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -10,12 +7,14 @@ import { cn } from '@/lib/utils'
 import { Bell } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { PlanBadge } from './plan-badge'
 
 type HeaderProps = {
   session: typeof auth.$Infer.Session
+  plan: string
 }
 
-export const Header = ({ session }: HeaderProps) => {
+export const Header = ({ session, plan }: HeaderProps) => {
   return (
     <header
       className={cn(
@@ -48,7 +47,7 @@ export const Header = ({ session }: HeaderProps) => {
       </Link>
       <nav className="flex flex-1 flex-row items-center justify-between gap-6 sm:pl-4">
         <ul className="flex flex-initial flex-row items-center">
-          <li className="flex flex-initial flex-row items-center gap-0.5 sm:gap-2">
+          <li className="flex flex-initial flex-row items-center gap-2">
             <svg
               width="16"
               height="16"
@@ -79,7 +78,7 @@ export const Header = ({ session }: HeaderProps) => {
               </Avatar>
               <p className="font-medium text-sm">{session.user.name}</p>
             </Link>
-            <EarlyAccessBadge isEarlyAccess={true} />
+            <PlanBadge plan={plan} />
           </li>
         </ul>
 

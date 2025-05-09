@@ -21,7 +21,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import type { tag } from '@/db/schema'
-import { generateRandomString, getTagColor } from '@/lib/utils'
+import { cn, generateRandomString, getTagColor } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   AlertCircle,
@@ -42,6 +42,7 @@ type CreateLinkProps = {
   children: ReactNode
   slug?: string
   tags: (typeof tag.$inferSelect)[]
+  isCustomSlugs: boolean
 }
 
 export const formSchema = z.object({
@@ -76,7 +77,12 @@ export const formSchema = z.object({
   selectedTags: z.array(z.string())
 })
 
-export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
+export const CreateLink = ({
+  children,
+  slug,
+  tags,
+  isCustomSlugs
+}: CreateLinkProps) => {
   const [open, setOpen] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -90,6 +96,14 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
   })
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
+    if (!value.slug) {
+      toast.error('Please enter a slug.', {
+        icon: <AlertCircle className="h-4 w-4" />,
+        description: 'A slug is required to create a link.'
+      })
+      return
+    }
+
     const slugExists = await isSlugExists(value.slug)
 
     if (slugExists) {
@@ -152,7 +166,12 @@ export const CreateLink = ({ children, slug, tags }: CreateLinkProps) => {
                     <FormLabel>Short link</FormLabel>
                     <FormControl>
                       <div className="relative flex items-center">
-                        <Input {...field} placeholder="pungrumpy" />
+                        <Input
+                          {...field}
+                          placeholder="pungrumpy"
+                          readOnly={!isCustomSlugs}
+                          className={cn(!isCustomSlugs && 'cursor-not-allowed')}
+                        />
                         <Button
                           variant="outline"
                           size="icon"

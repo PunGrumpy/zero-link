@@ -22,7 +22,7 @@ export const user = pgTable('user', {
   banReason: text('ban_reason'),
   banExpires: timestamp('ban_expires'),
   twoFactorEnabled: boolean('two_factor_enabled'),
-  limitLinks: integer('limit_links').notNull()
+  planId: text('plan_id')
 })
 
 export const session = pgTable('session', {

@@ -16,6 +16,7 @@ import { navigation } from '@/lib/navigation'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 type HeaderProps = {
   session: typeof auth.$Infer.Session | null
@@ -23,6 +24,7 @@ type HeaderProps = {
 
 export const Header = ({ session }: HeaderProps) => {
   const isScrolled = useIsScroll()
+  const pathname = usePathname()
 
   return (
     <header
@@ -60,7 +62,11 @@ export const Header = ({ session }: HeaderProps) => {
                         asChild
                         size="sm"
                         variant="ghost"
-                        className="rounded-full"
+                        className={cn(
+                          'h-7.5 rounded-full px-3',
+                          pathname === item.href &&
+                            'bg-accent text-accent-foreground transition-all'
+                        )}
                       >
                         <Link href={item.href}>{item.label}</Link>
                       </Button>

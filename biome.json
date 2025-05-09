@@ -19,6 +19,6 @@
     }
   },
   "files": {
-    "ignore": ["components/ui/**", "db/migrations/**"]
+    "ignore": ["components/ui/**", "db/migrations/**", "db/seed.ts"]
   }
 }
