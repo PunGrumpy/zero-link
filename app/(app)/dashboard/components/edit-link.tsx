@@ -22,7 +22,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import type { tag } from '@/db/schema'
-import { getTagColor } from '@/lib/utils'
+import { cn, getTagColor } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AlertCircle, CheckCircle2, Edit, Plus, Tags } from 'lucide-react'
 import { useState } from 'react'
@@ -37,9 +37,10 @@ import { CreateTag } from './create-tag'
 type EditLinkProps = {
   link: LinkWithTag
   tags: (typeof tag.$inferSelect)[]
+  isCustomSlugs: boolean
 }
 
-export const EditLink = ({ link, tags }: EditLinkProps) => {
+export const EditLink = ({ link, tags, isCustomSlugs }: EditLinkProps) => {
   const [open, setOpen] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -107,7 +108,12 @@ export const EditLink = ({ link, tags }: EditLinkProps) => {
                   <FormItem>
                     <FormLabel>Short link</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="pungrumpy" />
+                      <Input
+                        {...field}
+                        placeholder="pungrumpy"
+                        disabled={!isCustomSlugs}
+                        className={cn(!isCustomSlugs && 'cursor-not-allowed')}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

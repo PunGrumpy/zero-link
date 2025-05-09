@@ -19,9 +19,14 @@ import { ShowClick } from './show-click'
 type CardLinkProps = {
   tags: (typeof tag.$inferSelect)[]
   filteredLink: LinkWithTag[]
+  isCustomSlugs: boolean
 }
 
-export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
+export const CardLink = async ({
+  tags,
+  filteredLink,
+  isCustomSlugs
+}: CardLinkProps) => {
   const baseUrl = env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:3000'
@@ -69,7 +74,11 @@ export const CardLink = async ({ tags, filteredLink }: CardLinkProps) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="grid gap-0.5">
                   <QRCode baseUrl={baseUrl} linkInfo={link} />
-                  <EditLink link={link} tags={tags} />
+                  <EditLink
+                    link={link}
+                    tags={tags}
+                    isCustomSlugs={isCustomSlugs}
+                  />
                   <DeleteLink slug={link.slug} />
                 </DropdownMenuContent>
               </DropdownMenu>

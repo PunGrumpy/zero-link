@@ -95,7 +95,11 @@ export default async function DashboardPage({
           </Button>
         </CreateLink>
       </div>
-      <CardLink tags={tags} filteredLink={filteredLinks} />
+      <CardLink
+        tags={tags}
+        filteredLink={filteredLinks}
+        isCustomSlugs={isCustomSlugs}
+      />
     </>
   )
 }
