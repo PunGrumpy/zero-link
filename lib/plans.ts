@@ -47,17 +47,17 @@ export const getPlanLimit = (plan: string) => {
     case 'starter':
       return {
         links: 10,
-        customSlugs: false
+        isCustomSlugs: false
       }
     case 'pro':
       return {
         links: 1000,
-        customSlugs: true
+        isCustomSlugs: true
       }
     default:
       return {
         links: 10,
-        customSlugs: false
+        isCustomSlugs: false
       }
   }
 }

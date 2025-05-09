@@ -10,12 +10,12 @@ import { Link, TriangleAlert } from 'lucide-react'
 
 type LinkLimitProps = {
   userLink: number
-  maxLink: number
+  maxLinks: number
 }
 
-export const LinkLimit = ({ userLink, maxLink }: LinkLimitProps) => {
-  const maxLimit = userLink >= maxLink
-  const midLimit = userLink >= maxLink / 2
+export const LinkLimit = ({ userLink, maxLinks }: LinkLimitProps) => {
+  const maxLimit = userLink >= maxLinks
+  const midLimit = userLink >= maxLinks / 2
 
   return (
     <TooltipProvider>
@@ -44,13 +44,13 @@ export const LinkLimit = ({ userLink, maxLink }: LinkLimitProps) => {
               <span>
                 {userLink < 10 ? `${userLink}` : userLink}
                 {' / '}
-                {maxLink < 10 ? `0${maxLink}` : maxLink}
+                {maxLinks < 10 ? `0${maxLinks}` : maxLinks}
               </span>
             </div>
           </div>
         </TooltipTrigger>
         <TooltipContent>
-          You have {userLink} links out of {maxLink}
+          You have {userLink} links out of {maxLinks}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
