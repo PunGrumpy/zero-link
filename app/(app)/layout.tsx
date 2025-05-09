@@ -16,16 +16,19 @@ export default async function AppLayout({ children }: AppLayoutProps) {
   const session = await auth.api.getSession({
     headers: await headers()
   })
-  const { activeSubscriptions } = await auth.api.polarCustomerState({
-    headers: await headers()
-  })
-  const plan =
-    activeSubscriptions.length > 0
-      ? getPlanByProductId(activeSubscriptions[0].productId)
-      : 'starter'
 
   if (!session) {
     redirect('/login')
+  }
+
+  const { activeSubscriptions } = await auth.api.polarCustomerState({
+    headers: await headers()
+  })
+  let plan = 'starter'
+  if (session.user.role === 'owner') {
+    plan = 'owner'
+  } else if (activeSubscriptions.length > 0) {
+    plan = getPlanByProductId(activeSubscriptions[0].productId)
   }
 
   return (

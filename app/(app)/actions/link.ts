@@ -118,10 +118,12 @@ export const createLink = async (
     .from(link)
     .where(eq(link.createdBy, session.user.id))
 
-  const plan =
-    activeSubscriptions.length > 0
-      ? getPlanByProductId(activeSubscriptions[0].productId)
-      : 'starter'
+  let plan = 'starter'
+  if (session.user.role === 'owner') {
+    plan = 'pro'
+  } else if (activeSubscriptions.length > 0) {
+    plan = getPlanByProductId(activeSubscriptions[0].productId)
+  }
 
   const { links: maxLinks } = getPlanLimit(plan)
 

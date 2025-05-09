@@ -56,20 +56,25 @@ export default async function DashboardPage({
   } = await searchParams
   const { links, tags } = await getLinkandTagByUser(sort)
   const availableTags = await getTags()
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
   const { activeSubscriptions } = await auth.api.polarCustomerState({
     headers: await headers()
   })
-  const isPro =
-    activeSubscriptions?.length > 0 &&
-    activeSubscriptions[0].productId === getPlans().pro.id &&
-    activeSubscriptions[0].status === 'active' &&
-    !activeSubscriptions[0].canceledAt &&
-    activeSubscriptions[0].currentPeriodEnd &&
-    new Date(activeSubscriptions[0].currentPeriodEnd) > new Date()
 
-  const { isCustomSlugs, links: maxLinks } = isPro
-    ? getPlanLimit(getPlans().pro.key)
-    : getPlanLimit(getPlans().starter.key)
+  const isPro =
+    session?.user.role === 'owner' ||
+    (activeSubscriptions?.length > 0 &&
+      activeSubscriptions[0].productId === getPlans().pro.id &&
+      activeSubscriptions[0].status === 'active' &&
+      !activeSubscriptions[0].canceledAt &&
+      activeSubscriptions[0].currentPeriodEnd &&
+      new Date(activeSubscriptions[0].currentPeriodEnd) > new Date())
+
+  const { isCustomSlugs, links: maxLinks } = getPlanLimit(
+    isPro ? getPlans().pro.key : getPlans().starter.key
+  )
 
   if (!links) {
     return (
