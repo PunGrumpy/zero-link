@@ -64,7 +64,7 @@ export const Plan = () => {
               className="flex flex-initial flex-row items-stretch gap-4"
             >
               <Link
-                href="/"
+                href="/dashboard"
                 className={cn(
                   'relative flex flex-1 shrink-0 items-center justify-between px-3 py-2',
                   'rounded-full font-medium text-sm transition-all',
@@ -123,7 +123,7 @@ export const Plan = () => {
               className="flex flex-initial flex-row items-stretch gap-4"
             >
               <Link
-                href="/"
+                href="/api/auth/checkout/pro"
                 className={cn(
                   'relative flex flex-1 shrink-0 items-center justify-between px-3 py-2',
                   'rounded-full font-medium text-sm transition-all',
