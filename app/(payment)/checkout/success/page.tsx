@@ -1,4 +1,4 @@
-import { CheckoutSuccess } from './components/checkout-sucess'
+import { CheckoutSuccess } from './components/checkout-success'
 
 type CheckoutSuccessPageProps = {
   searchParams: Promise<{
