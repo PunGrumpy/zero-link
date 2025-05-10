@@ -61,7 +61,11 @@ export const Feature = () => {
       {features.map(({ icon, caption, title, showcase }, index) => (
         <div
           key={index}
-          className={cn('p-12', index !== features.length - 1 && 'border-r')}
+          className={cn(
+            'p-12',
+            index !== features.length - 1 && 'md:border-r',
+            index !== 0 && 'border-t md:border-t-0'
+          )}
         >
           <div className="flex flex-initial flex-col items-stretch gap-12">
             <div className="flex flex-initial flex-col items-stretch gap-2 md:gap-4">
