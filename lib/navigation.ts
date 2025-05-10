@@ -39,6 +39,7 @@ export const appNavigation = [
 
 export const settingsNavigation = [
   { href: '/settings', label: 'General' },
+  { href: '/settings/billing', label: 'Billing' },
   { href: '/settings/authentication', label: 'Authentication' },
   { href: '/settings/security', label: 'Security' }
 ]
