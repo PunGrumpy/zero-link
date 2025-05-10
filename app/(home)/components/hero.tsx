@@ -1,9 +1,10 @@
+import { Prose } from '@/components/prose'
 import { Section } from '@/components/section'
 import { cn } from '@/lib/utils'
 
 export const Hero = () => {
   return (
-    <Section crossPosition="top-left" className="border-t p-24">
+    <Section crossPosition="top-left" className="border-t px-8 py-24">
       <div className="flex flex-col items-center gap-4">
         <h1
           className={cn(
@@ -14,10 +15,10 @@ export const Hero = () => {
         >
           Zero Link
         </h1>
-        <p className="block text-muted-foreground md:text-md">
+        <Prose className="text-center text-muted-foreground">
           Unleash the thunderbolt of efficiency with our divine URL shortener
           that will make your life easier.
-        </p>
+        </Prose>
       </div>
     </Section>
   )
