@@ -4,7 +4,7 @@ import { db } from '@/db'
 import { link, linkTag, tag } from '@/db/schema'
 import { auth } from '@/lib/auth'
 import { getPlanByProductId, getPlanLimit } from '@/lib/plans'
-import { count, eq } from 'drizzle-orm'
+import { and, count, eq, like } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -17,7 +17,9 @@ export type LinkWithTag = typeof link.$inferSelect & {
 }
 
 export const getLinkandTagByUser = async (
-  sort: Sort
+  sort: Sort,
+  searchLink?: string,
+  searchTag?: string
 ): Promise<{
   links: LinkWithTag[]
   tags: (typeof tag.$inferSelect)[]
@@ -30,7 +32,7 @@ export const getLinkandTagByUser = async (
     redirect('/login')
   }
 
-  const links = await db
+  const query = db
     .select({
       link: link,
       tag: tag
@@ -38,25 +40,34 @@ export const getLinkandTagByUser = async (
     .from(link)
     .leftJoin(linkTag, eq(link.id, linkTag.linkId))
     .leftJoin(tag, eq(linkTag.tagId, tag.id))
-    .where(eq(link.createdBy, session.user.id))
-    .then(results => {
-      const grouped = results.reduce(
-        (acc, { link, tag }) => {
-          if (!acc[link.id]) {
-            acc[link.id] = {
-              ...link,
-              tags: []
-            }
-          }
-          if (tag) {
-            acc[link.id].tags.push(tag)
-          }
-          return acc
-        },
-        {} as Record<string, LinkWithTag>
+    .where(
+      and(
+        eq(link.createdBy, session.user.id),
+        searchLink
+          ? like(link.slug, `%${searchLink.toLowerCase()}%`)
+          : undefined,
+        searchTag ? eq(tag.name, searchTag) : undefined
       )
-      return Object.values(grouped)
-    })
+    )
+
+  const links = await query.then(results => {
+    const grouped = results.reduce(
+      (acc, { link, tag }) => {
+        if (!acc[link.id]) {
+          acc[link.id] = {
+            ...link,
+            tags: []
+          }
+        }
+        if (tag) {
+          acc[link.id].tags.push(tag)
+        }
+        return acc
+      },
+      {} as Record<string, LinkWithTag>
+    )
+    return Object.values(grouped)
+  })
 
   const sortedLinks = links.sort((a, b) => {
     if (sort === 'newest') {

@@ -1,4 +1,4 @@
-import { type LinkWithTag, getLinkandTagByUser } from '@/app/(app)/actions/link'
+import { getLinkandTagByUser } from '@/app/(app)/actions/link'
 import { Button } from '@/components/ui/button'
 import { auth } from '@/lib/auth'
 import { createMetadata } from '@/lib/metadata'
@@ -19,42 +19,19 @@ const description = 'Dashboard for managing your links'
 
 export const metadata: Metadata = createMetadata(title, description)
 
-const filterLinks = (
-  links: LinkWithTag[],
-  searchLink?: string,
-  searchTag?: string
-) => {
-  return links.filter(link => {
-    if (!searchLink && !searchTag) {
-      return true
-    }
-
-    const matchSlug =
-      !searchLink ||
-      link.slug.toLocaleLowerCase().includes(searchLink.toLocaleLowerCase())
-    const matchTag = !searchTag || link.tags.some(tag => tag.name === searchTag)
-
-    return matchSlug && matchTag
-  })
-}
-
 type DashboardPageProps = {
-  searchParams: Promise<{
+  searchParams: {
     search?: string
     tag?: string
     sort?: 'newest' | 'oldest' | 'most-clicks' | 'least-clicks'
-  }>
+  }
 }
 
 export default async function DashboardPage({
   searchParams
 }: DashboardPageProps) {
-  const {
-    search: searchLink,
-    tag: searchTag,
-    sort = 'newest'
-  } = await searchParams
-  const { links, tags } = await getLinkandTagByUser(sort)
+  const { search: searchLink, tag: searchTag, sort = 'newest' } = searchParams
+  const { links, tags } = await getLinkandTagByUser(sort, searchLink, searchTag)
   const availableTags = await getTags()
   const session = await auth.api.getSession({
     headers: await headers()
@@ -84,8 +61,6 @@ export default async function DashboardPage({
     )
   }
 
-  const filteredLinks = filterLinks(links, searchLink, searchTag)
-
   return (
     <>
       <div className="flex flex-initial flex-row items-center gap-3">
@@ -102,7 +77,7 @@ export default async function DashboardPage({
       </div>
       <CardLink
         tags={tags}
-        filteredLink={filteredLinks}
+        filteredLink={links}
         isCustomSlugs={isCustomSlugs}
       />
     </>
