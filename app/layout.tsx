@@ -1,6 +1,7 @@
 import './globals.css'
 
 import { Toaster } from '@/components/ui/sonner'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import { createMetadata } from '@/lib/metadata'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/providers/theme-provider'
@@ -44,8 +45,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster richColors />
+          <TooltipProvider>
+            {children}
+            <Toaster richColors />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
