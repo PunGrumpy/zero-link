@@ -1,5 +1,6 @@
 import { HeroBadge } from '@/components/hero-badge'
 import { Section } from '@/components/section'
+import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import {
   ArrowRight,
@@ -16,8 +17,8 @@ export const Plan = () => {
   return (
     <Section className="grid grid-cols-1 grid-rows-1 sm:h-fit">
       <div className="overflow-visible sm:auto-cols-auto sm:auto-rows-auto">
-        <div className="flex flex-initial flex-row items-stretch">
-          <div className="relative flex w-full flex-col gap-8 text-balance border-r px-8 py-12">
+        <div className="flex flex-initial flex-col items-stretch sm:flex-row">
+          <div className="relative flex w-full flex-col gap-8 text-balance px-8 py-12 md:border-r">
             <div className="flex flex-initial flex-col items-stretch gap-12">
               <div className="mt-auto flex flex-initial flex-col items-stretch gap-2">
                 <div className="flex flex-initial items-center gap-2">
@@ -76,12 +77,13 @@ export const Plan = () => {
             </button>
           </div>
 
-          <div className="relative flex w-full flex-col gap-8 text-balance bg-input/30 px-8 py-12">
-            <HeroBadge text="Most Popular" />
+          <div className="relative flex w-full flex-col gap-8 text-balance border-t bg-input/30 px-8 py-12 md:border-t-0">
+            <HeroBadge text="Most Popular" className="hidden sm:block" />
             <div className="flex flex-initial flex-col items-stretch gap-12">
               <div className="mt-auto flex flex-initial flex-col items-stretch gap-2">
                 <div className="flex flex-initial items-center gap-2">
                   <div className="font-semibold text-xl md:text-2xl">Pro</div>
+                  <Badge className="rounded-full">Most Popular</Badge>
                 </div>
                 <div className="text-muted-foreground">
                   <div className="inline-block">
