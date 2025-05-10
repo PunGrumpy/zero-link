@@ -28,7 +28,10 @@ export default async function AppLayout({ children }: AppLayoutProps) {
   if (session.user.role === 'owner') {
     plan = 'owner'
   } else if (activeSubscriptions.length > 0) {
-    plan = getPlanByProductId(activeSubscriptions[0].productId)
+    const subscription = activeSubscriptions[0]
+    if (!subscription.canceledAt) {
+      plan = getPlanByProductId(subscription.productId)
+    }
   }
 
   return (
