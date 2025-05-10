@@ -51,7 +51,77 @@ const features = [
         always online. Your data is safe with us.
       </>
     ),
-    showcase: <>idk, what to put here</>
+    showcase: (
+      <div className="grid grid-cols-2 gap-3">
+        <div className="flex flex-initial flex-col items-stretch gap-3">
+          <div
+            className={cn(
+              'flex w-fit flex-initial rotate-1 flex-col items-center justify-center',
+              'rounded-md border px-3 py-2 shadow-2xs dark:bg-input/30',
+              'text-muted-foreground text-sm'
+            )}
+          >
+            191.294.500.100
+          </div>
+          <div
+            className={cn(
+              '-rotate-10 flex w-fit flex-initial flex-col items-center justify-center',
+              'rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 shadow-2xs',
+              'text-destructive text-sm'
+            )}
+          >
+            !hacker#
+          </div>
+          <div
+            className={cn(
+              'flex w-fit flex-initial translate-x-6 rotate-4 flex-col items-center justify-center',
+              'rounded-md border px-3 py-2 shadow-2xs dark:bg-input/30',
+              'text-muted-foreground text-sm'
+            )}
+          >
+            /slugs
+          </div>
+          <div
+            className={cn(
+              '-rotate-5 flex w-fit flex-initial flex-col items-center justify-center',
+              'rounded-md border px-3 py-2 shadow-2xs dark:bg-input/30',
+              'text-muted-foreground text-sm'
+            )}
+          >
+            redirect=https://0.pungrumpy.com
+          </div>
+        </div>
+        <div className="flex flex-initial flex-col items-stretch gap-3">
+          <div
+            className={cn(
+              '-rotate-5 flex w-fit flex-initial flex-col items-center justify-center',
+              'rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 shadow-2xs',
+              'text-destructive text-sm'
+            )}
+          >
+            off-topic
+          </div>
+          <div
+            className={cn(
+              'flex w-fit flex-initial rotate-20 flex-col items-center justify-center',
+              'rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 shadow-2xs',
+              'text-destructive text-sm'
+            )}
+          >
+            spwned
+          </div>
+          <div
+            className={cn(
+              '-translate-x-6 flex w-fit flex-initial rotate-5 flex-col items-center justify-center',
+              'rounded-md border px-3 py-2 shadow-2xs dark:bg-input/30',
+              'text-muted-foreground text-sm'
+            )}
+          >
+            191.294.250.100
+          </div>
+        </div>
+      </div>
+    )
   }
 ]
 
