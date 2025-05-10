@@ -6,6 +6,7 @@ export default function PricingPage() {
     <>
       <Hero />
       <Plan />
+      <div className="mx-4" />
     </>
   )
 }
