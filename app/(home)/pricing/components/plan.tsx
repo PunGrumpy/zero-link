@@ -83,7 +83,7 @@ export const Plan = () => {
               <div className="mt-auto flex flex-initial flex-col items-stretch gap-2">
                 <div className="flex flex-initial items-center gap-2">
                   <div className="font-semibold text-xl md:text-2xl">Pro</div>
-                  <Badge className="rounded-full">Most Popular</Badge>
+                  <Badge className="rounded-full sm:hidden">Most Popular</Badge>
                 </div>
                 <div className="text-muted-foreground">
                   <div className="inline-block">
