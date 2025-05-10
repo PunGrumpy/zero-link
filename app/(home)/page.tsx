@@ -1,4 +1,3 @@
-import {} from 'lucide-react'
 import { Feature } from './components/feature'
 import { Hero } from './components/hero'
 

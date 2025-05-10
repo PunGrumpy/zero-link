@@ -1,6 +1,7 @@
+import { AnimatedEmptyState } from '@/components/animated-empty-state'
 import { Section } from '@/components/section'
 import { cn } from '@/lib/utils'
-import { Globe, ShieldCheck, Zap } from 'lucide-react'
+import { Globe, Link, MousePointerClick, ShieldCheck, Zap } from 'lucide-react'
 
 const features = [
   {
@@ -12,7 +13,20 @@ const features = [
         redirects and analytics with our optimized infrastructure.
       </>
     ),
-    showcase: <>idk, what to put here</>
+    showcase: (
+      <AnimatedEmptyState
+        className="h-fit border-0 py-0"
+        cardContent={
+          <>
+            <Link className="h-3 w-3 text-muted-foreground" />
+            <div className="h-2.5 w-24 min-w-0 rounded-sm bg-input" />
+            <div className="flex grow items-center justify-end gap-1.5 text-muted-foreground">
+              <MousePointerClick className="h-3 w-3" />
+            </div>
+          </>
+        }
+      />
+    )
   },
   {
     icon: <Globe className="h-4 w-4" />,

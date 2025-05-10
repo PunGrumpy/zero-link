@@ -46,6 +46,8 @@
 
   --color-success: var(--success);
   --color-warning: var(--warning);
+
+  --animate-infinite-scroll-y: infinite-scroll-y 22s linear infinite;
 }
 
 :root {
@@ -163,5 +165,14 @@
     --webkit-background-color: var(--input);
     -webkit-box-shadow: 0 0 0 var(--input-max-height)
       color-mix(in srgb, var(--input) 30%, var(--background)) inset !important;
+  }
+}
+
+@keyframes infinite-scroll-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--scroll));
   }
 }
