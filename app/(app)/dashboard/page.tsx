@@ -20,17 +20,21 @@ const description = 'Dashboard for managing your links'
 export const metadata: Metadata = createMetadata(title, description)
 
 type DashboardPageProps = {
-  searchParams: {
+  searchParams: Promise<{
     search?: string
     tag?: string
     sort?: 'newest' | 'oldest' | 'most-clicks' | 'least-clicks'
-  }
+  }>
 }
 
 export default async function DashboardPage({
   searchParams
 }: DashboardPageProps) {
-  const { search: searchLink, tag: searchTag, sort = 'newest' } = searchParams
+  const {
+    search: searchLink,
+    tag: searchTag,
+    sort = 'newest'
+  } = await searchParams
   const { links, tags } = await getLinkandTagByUser(sort, searchLink, searchTag)
   const availableTags = await getTags()
   const session = await auth.api.getSession({
