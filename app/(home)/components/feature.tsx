@@ -1,7 +1,8 @@
 import { AnimatedEmptyState } from '@/components/animated-empty-state'
+import { Globe } from '@/components/globe'
 import { Section } from '@/components/section'
 import { cn } from '@/lib/utils'
-import { Globe, Link, MousePointerClick, ShieldCheck, Zap } from 'lucide-react'
+import { Globe2, Link, MousePointerClick, ShieldCheck, Zap } from 'lucide-react'
 
 const features = [
   {
@@ -29,7 +30,7 @@ const features = [
     )
   },
   {
-    icon: <Globe className="h-4 w-4" />,
+    icon: <Globe2 className="h-4 w-4" />,
     caption: 'Global Reach',
     title: (
       <>
@@ -39,7 +40,7 @@ const features = [
         , instantly, with our global CDN.
       </>
     ),
-    showcase: <>idk, what to put here</>
+    showcase: <Globe />
   },
   {
     icon: <ShieldCheck className="h-4 w-4" />,
